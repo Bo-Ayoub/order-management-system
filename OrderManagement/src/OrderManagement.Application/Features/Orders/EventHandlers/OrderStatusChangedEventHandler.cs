@@ -48,23 +48,12 @@ public class OrderStatusChangedEventHandler : INotificationHandler<OrderStatusCh
     {
         _logger.LogInformation("Processing confirmed order {OrderId}", notification.OrderId);
 
-        // Business logic for confirmed orders:
-        // - Send confirmation email to customer
-        // - Reserve inventory
-        // - Generate picking list for warehouse
-        // - Schedule payment processing
-
         await Task.CompletedTask;
     }
 
     private async Task HandleOrderProcessing(OrderStatusChangedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Order {OrderId} is now being processed", notification.OrderId);
-
-        // Business logic for processing orders:
-        // - Notify warehouse to start picking
-        // - Update inventory allocation
-        // - Send processing notification to customer
 
         await Task.CompletedTask;
     }
@@ -73,11 +62,6 @@ public class OrderStatusChangedEventHandler : INotificationHandler<OrderStatusCh
     {
         _logger.LogInformation("Order {OrderId} has been shipped", notification.OrderId);
 
-        // Business logic for shipped orders:
-        // - Send shipping notification with tracking info
-        // - Update customer's order history
-        // - Schedule delivery follow-up
-
         await Task.CompletedTask;
     }
 
@@ -85,11 +69,6 @@ public class OrderStatusChangedEventHandler : INotificationHandler<OrderStatusCh
     {
         _logger.LogInformation("Order {OrderId} has been delivered", notification.OrderId);
 
-        // Business logic for delivered orders:
-        // - Send delivery confirmation
-        // - Request customer feedback
-        // - Update customer satisfaction metrics
-        // - Process final payment if needed
 
         await Task.CompletedTask;
     }
@@ -97,12 +76,6 @@ public class OrderStatusChangedEventHandler : INotificationHandler<OrderStatusCh
     private async Task HandleOrderCancelled(OrderStatusChangedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Order {OrderId} has been cancelled", notification.OrderId);
-
-        // Business logic for cancelled orders:
-        // - Release reserved inventory
-        // - Process refund if payment was made
-        // - Send cancellation notification
-        // - Update customer support tickets
 
         await Task.CompletedTask;
     }

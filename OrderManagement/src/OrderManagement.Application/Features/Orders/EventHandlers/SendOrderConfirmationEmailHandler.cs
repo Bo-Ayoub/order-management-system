@@ -54,8 +54,6 @@ public class SendOrderConfirmationEmailHandler : INotificationHandler<OrderCreat
             _logger.LogError(ex, "Failed to send order confirmation email for order {OrderId}",
                 notification.OrderId);
 
-            // Don't rethrow - email failure shouldn't fail the order creation
-            // In a real system, you might want to queue this for retry
         }
     }
 }

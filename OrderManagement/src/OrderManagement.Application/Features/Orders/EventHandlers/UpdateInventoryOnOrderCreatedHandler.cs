@@ -41,11 +41,7 @@ public class UpdateInventoryOnOrderCreatedHandler : INotificationHandler<OrderCr
                 return;
             }
 
-            // Note: In the CreateOrderCommandHandler, we already updated the stock
-            // This handler could be used for additional inventory management:
-            // - Create inventory reservations
-            // - Log inventory movements
-            // - Send low stock alerts
+
 
             foreach (var orderItem in order.OrderItems)
             {
@@ -61,10 +57,7 @@ public class UpdateInventoryOnOrderCreatedHandler : INotificationHandler<OrderCr
                         _logger.LogWarning("Low stock alert: Product {ProductName} ({ProductId}) has only {StockQuantity} units remaining",
                             product.Name, product.Id, product.StockQuantity);
 
-                        // In a real system, you might:
-                        // - Send alert to purchasing department
-                        // - Automatically reorder from suppliers
-                        // - Update product visibility on website
+
                     }
                 }
             }
@@ -76,7 +69,7 @@ public class UpdateInventoryOnOrderCreatedHandler : INotificationHandler<OrderCr
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to process inventory for order {OrderId}", notification.OrderId);
-            // Don't rethrow - inventory logging failure shouldn't fail the order
+
         }
     }
 }

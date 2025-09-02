@@ -18,12 +18,6 @@ public class OrderCreatedEventHandler : INotificationHandler<OrderCreatedEvent>
         _logger.LogInformation("Order {OrderId} has been created for customer {CustomerId}",
             notification.OrderId, notification.CustomerId);
 
-        // Here you could add additional business logic such as:
-        // - Send welcome email to customer
-        // - Create audit log entry  
-        // - Trigger inventory reservation
-        // - Send notification to warehouse
-        // - Update customer statistics
 
         await Task.CompletedTask;
     }
