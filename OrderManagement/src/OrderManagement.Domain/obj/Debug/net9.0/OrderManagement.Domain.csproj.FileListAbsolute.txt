@@ -1,0 +1,12 @@
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\bin\Debug\net9.0\OrderManagement.Domain.deps.json
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\bin\Debug\net9.0\OrderManagement.Domain.dll
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\bin\Debug\net9.0\OrderManagement.Domain.pdb
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.csproj.AssemblyReference.cache
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.AssemblyInfo.cs
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.dll
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\refint\OrderManagement.Domain.dll
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.pdb
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\ref\OrderManagement.Domain.dll

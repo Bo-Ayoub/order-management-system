@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{779F9B70-B94D-4B72-9BD1-01314505DE94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Domain", "src\OrderManagement.Domain\OrderManagement.Domain.csproj", "{044FB63F-01A3-4398-AFDD-AF38E1405287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Application", "src\OrderManagement.Application\OrderManagement.Application.csproj", "{F73D6EC3-3D21-43B0-87D6-DB233F79233B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Infrastructure", "src\OrderManagement.Infrastructure\OrderManagement.Infrastructure.csproj", "{0D0DD365-6C49-481F-A6C2-C273891AF937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.API", "src\OrderManagement.API\OrderManagement.API.csproj", "{5B2D9F42-43E7-4B2B-B5B1-B8460A7B8BB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9C4C87B1-6338-45F2-87CE-A805B86F3093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.UnitTests", "tests\OrderManagement.UnitTests\OrderManagement.UnitTests.csproj", "{72662980-5847-41DA-867F-17F82924C841}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B52CF670-DA03-4D0A-90B9-9216E23AB582}"
+	ProjectSection(SolutionItems) = preProject
+		src\OrderManagement.API\.dockerignore = src\OrderManagement.API\.dockerignore
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{044FB63F-01A3-4398-AFDD-AF38E1405287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{044FB63F-01A3-4398-AFDD-AF38E1405287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{044FB63F-01A3-4398-AFDD-AF38E1405287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{044FB63F-01A3-4398-AFDD-AF38E1405287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F73D6EC3-3D21-43B0-87D6-DB233F79233B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F73D6EC3-3D21-43B0-87D6-DB233F79233B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F73D6EC3-3D21-43B0-87D6-DB233F79233B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F73D6EC3-3D21-43B0-87D6-DB233F79233B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0DD365-6C49-481F-A6C2-C273891AF937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0DD365-6C49-481F-A6C2-C273891AF937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0DD365-6C49-481F-A6C2-C273891AF937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0DD365-6C49-481F-A6C2-C273891AF937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B2D9F42-43E7-4B2B-B5B1-B8460A7B8BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B2D9F42-43E7-4B2B-B5B1-B8460A7B8BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B2D9F42-43E7-4B2B-B5B1-B8460A7B8BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B2D9F42-43E7-4B2B-B5B1-B8460A7B8BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72662980-5847-41DA-867F-17F82924C841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72662980-5847-41DA-867F-17F82924C841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72662980-5847-41DA-867F-17F82924C841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72662980-5847-41DA-867F-17F82924C841}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{044FB63F-01A3-4398-AFDD-AF38E1405287} = {779F9B70-B94D-4B72-9BD1-01314505DE94}
+		{F73D6EC3-3D21-43B0-87D6-DB233F79233B} = {779F9B70-B94D-4B72-9BD1-01314505DE94}
+		{0D0DD365-6C49-481F-A6C2-C273891AF937} = {779F9B70-B94D-4B72-9BD1-01314505DE94}
+		{5B2D9F42-43E7-4B2B-B5B1-B8460A7B8BB3} = {779F9B70-B94D-4B72-9BD1-01314505DE94}
+		{72662980-5847-41DA-867F-17F82924C841} = {9C4C87B1-6338-45F2-87CE-A805B86F3093}
+	EndGlobalSection
+EndGlobal

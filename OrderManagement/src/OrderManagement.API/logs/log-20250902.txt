@@ -1,0 +1,138 @@
+[2025-09-02 14:50:21.327 +01:00 WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development. <s:Microsoft.EntityFrameworkCore.Model.Validation>
+[2025-09-02 14:50:33.895 +01:00 INF] Executed DbCommand (875ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [OrderManagementDb_Dev]; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.362 +01:00 INF] Executed DbCommand (330ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [OrderManagementDb_Dev] SET READ_COMMITTED_SNAPSHOT ON;
+END; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.473 +01:00 INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.670 +01:00 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Customers] (
+    [Id] uniqueidentifier NOT NULL,
+    [FirstName] nvarchar(100) NOT NULL,
+    [LastName] nvarchar(100) NOT NULL,
+    [Email] nvarchar(256) NOT NULL,
+    [PhoneNumber] nvarchar(20) NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NULL,
+    CONSTRAINT [PK_Customers] PRIMARY KEY ([Id])
+); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.706 +01:00 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(200) NOT NULL,
+    [Description] nvarchar(1000) NULL,
+    [Price] decimal(18,2) NOT NULL,
+    [Currency] nvarchar(3) NOT NULL,
+    [StockQuantity] int NOT NULL,
+    [Category] nvarchar(100) NULL,
+    [IsActive] bit NOT NULL DEFAULT CAST(1 AS bit),
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([Id])
+); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.743 +01:00 INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Orders] (
+    [Id] uniqueidentifier NOT NULL,
+    [OrderNumber] nvarchar(50) NOT NULL,
+    [CustomerId] uniqueidentifier NOT NULL,
+    [Status] nvarchar(20) NOT NULL,
+    [OrderDate] datetime2 NOT NULL,
+    [ShippedDate] datetime2 NULL,
+    [DeliveredDate] datetime2 NULL,
+    [ShippingAddress] nvarchar(500) NULL,
+    [Notes] nvarchar(1000) NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NULL,
+    CONSTRAINT [PK_Orders] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Orders_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([Id]) ON DELETE NO ACTION
+); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.760 +01:00 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [OrderItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [ProductId] uniqueidentifier NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    [Currency] nvarchar(3) NOT NULL,
+    [OrderId] uniqueidentifier NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NULL,
+    CONSTRAINT [PK_OrderItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_OrderItems_Orders_OrderId] FOREIGN KEY ([OrderId]) REFERENCES [Orders] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_OrderItems_Products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [Products] ([Id]) ON DELETE NO ACTION
+); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.780 +01:00 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Customers_CreatedAt] ON [Customers] ([CreatedAt]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.797 +01:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Customers_Email] ON [Customers] ([Email]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.808 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Customers_FirstName_LastName] ON [Customers] ([FirstName], [LastName]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.821 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_OrderItems_OrderId] ON [OrderItems] ([OrderId]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.833 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_OrderItems_ProductId] ON [OrderItems] ([ProductId]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.848 +01:00 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_CustomerId] ON [Orders] ([CustomerId]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.864 +01:00 INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_OrderDate] ON [Orders] ([OrderDate]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.879 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Orders_OrderNumber] ON [Orders] ([OrderNumber]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.890 +01:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_Status] ON [Orders] ([Status]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.902 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_Status_OrderDate] ON [Orders] ([Status], [OrderDate]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.918 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_Category] ON [Products] ([Category]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.929 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_CreatedAt] ON [Products] ([CreatedAt]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.940 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_IsActive] ON [Products] ([IsActive]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.951 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_IsActive_StockQuantity] ON [Products] ([IsActive], [StockQuantity]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:34.964 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_Name] ON [Products] ([Name]); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:35.022 +01:00 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:35.057 +01:00 INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]'); <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:35.927 +01:00 INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Customers] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:36.261 +01:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:36.833 +01:00 INF] Executed DbCommand (89ms) [Parameters=[@p0='28cd5fcb-b15c-41c9-a5bc-b7d5a05d5a1e', @p1='2025-09-02T13:50:36.0290557Z', @p2='John' (Nullable = false) (Size = 100), @p3='Doe' (Nullable = false) (Size = 100), @p4='+1-555-0101' (Size = 20), @p5=NULL (DbType = DateTime2), @p6='john.doe@example.com' (Nullable = false) (Size = 256), @p7='b5ba35c3-a5d8-4d17-b365-dfcc21c9ef00', @p8='2025-09-02T13:50:36.0302022Z', @p9='Jane' (Nullable = false) (Size = 100), @p10='Smith' (Nullable = false) (Size = 100), @p11='+1-555-0102' (Size = 20), @p12=NULL (DbType = DateTime2), @p13='jane.smith@example.com' (Nullable = false) (Size = 256), @p14='f1e4dfe2-5a1f-4be5-a210-004fa96e1406', @p15='2025-09-02T13:50:36.0302116Z', @p16='Bob' (Nullable = false) (Size = 100), @p17='Johnson' (Nullable = false) (Size = 100), @p18='+1-555-0103' (Size = 20), @p19=NULL (DbType = DateTime2), @p20='bob.johnson@example.com' (Nullable = false) (Size = 256), @p21='3993f0d5-7ca0-478a-8b34-748d1936fa11', @p22='Electronics' (Size = 100), @p23='2025-09-02T13:50:36.2733886Z', @p24='High-performance laptop for professionals' (Size = 1000), @p25='Laptop Pro 16' (Nullable = false) (Size = 200), @p26='50', @p27=NULL (DbType = DateTime2), @p28='2499.99' (Precision = 18) (Scale = 2), @p29='USD' (Nullable = false) (Size = 3), @p30='81484444-91c4-492e-95ca-8da46afdd10b', @p31='Office Supplies' (Size = 100), @p32='2025-09-02T13:50:36.2737919Z', @p33='Set of 3 premium notebooks' (Size = 1000), @p34='Notebook Set' (Nullable = false) (Size = 200), @p35='300', @p36=NULL (DbType = DateTime2), @p37='24.99' (Precision = 18) (Scale = 2), @p38='USD' (Nullable = false) (Size = 3), @p39='8453a2a5-170d-42a0-a1c1-5d0845869ae4', @p40='Electronics' (Size = 100), @p41='2025-09-02T13:50:36.2737903Z', @p42='8-in-1 USB-C hub with 4K HDMI support' (Size = 1000), @p43='USB-C Hub' (Nullable = false) (Size = 200), @p44='100', @p45=NULL (DbType = DateTime2), @p46='89.99' (Precision = 18) (Scale = 2), @p47='USD' (Nullable = false) (Size = 3), @p48='da1a707d-7093-41f3-b8ad-9fe7cea2fc58', @p49='Electronics' (Size = 100), @p50='2025-09-02T13:50:36.2737880Z', @p51='Ergonomic wireless mouse with long battery life' (Size = 1000), @p52='Wireless Mouse' (Nullable = false) (Size = 200), @p53='200', @p54=NULL (DbType = DateTime2), @p55='79.99' (Precision = 18) (Scale = 2), @p56='USD' (Nullable = false) (Size = 3), @p57='e42d3115-3285-4a3a-a720-555c2fef2a8d', @p58='Electronics' (Size = 100), @p59='2025-09-02T13:50:36.2737896Z', @p60='RGB mechanical keyboard with cherry switches' (Size = 1000), @p61='Mechanical Keyboard' (Nullable = false) (Size = 200), @p62='75', @p63=NULL (DbType = DateTime2), @p64='149.99' (Precision = 18) (Scale = 2), @p65='USD' (Nullable = false) (Size = 3), @p66='effd4ba2-3e8a-4de6-ac53-52263bee499c', @p67='Office Supplies' (Size = 100), @p68='2025-09-02T13:50:36.2737914Z', @p69='Ceramic coffee mug with company logo' (Size = 1000), @p70='Coffee Mug' (Nullable = false) (Size = 200), @p71='500', @p72=NULL (DbType = DateTime2), @p73='19.99' (Precision = 18) (Scale = 2), @p74='USD' (Nullable = false) (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Customers] ([Id], [CreatedAt], [FirstName], [LastName], [PhoneNumber], [UpdatedAt], [Email])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6),
+(@p7, @p8, @p9, @p10, @p11, @p12, @p13),
+(@p14, @p15, @p16, @p17, @p18, @p19, @p20);
+MERGE [Products] USING (
+VALUES (@p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28, @p29, 0),
+(@p30, @p31, @p32, @p33, @p34, @p35, @p36, @p37, @p38, 1),
+(@p39, @p40, @p41, @p42, @p43, @p44, @p45, @p46, @p47, 2),
+(@p48, @p49, @p50, @p51, @p52, @p53, @p54, @p55, @p56, 3),
+(@p57, @p58, @p59, @p60, @p61, @p62, @p63, @p64, @p65, 4),
+(@p66, @p67, @p68, @p69, @p70, @p71, @p72, @p73, @p74, 5)) AS i ([Id], [Category], [CreatedAt], [Description], [Name], [StockQuantity], [UpdatedAt], [Price], [Currency], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Id], [Category], [CreatedAt], [Description], [Name], [StockQuantity], [UpdatedAt], [Price], [Currency])
+VALUES (i.[Id], i.[Category], i.[CreatedAt], i.[Description], i.[Name], i.[StockQuantity], i.[UpdatedAt], i.[Price], i.[Currency])
+OUTPUT INSERTED.[IsActive], i._Position; <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 14:50:36.911 +01:00 INF] Database initialization completed successfully <s:OrderManagement.Infrastructure.Data.ApplicationDbContext>
+[2025-09-02 14:50:37.319 +01:00 INF] Starting Order Management API... <s:>
+[2025-09-02 14:50:38.028 +01:00 WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert <s:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer>
+[2025-09-02 14:50:38.221 +01:00 INF] Now listening on: https://localhost:7279 <s:Microsoft.Hosting.Lifetime>
+[2025-09-02 14:50:38.230 +01:00 INF] Now listening on: http://localhost:5240 <s:Microsoft.Hosting.Lifetime>
+[2025-09-02 14:50:38.416 +01:00 INF] Application started. Press Ctrl+C to shut down. <s:Microsoft.Hosting.Lifetime>
+[2025-09-02 14:50:38.446 +01:00 INF] Hosting environment: Development <s:Microsoft.Hosting.Lifetime>
+[2025-09-02 14:50:38.451 +01:00 INF] Content root path: C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.API <s:Microsoft.Hosting.Lifetime>
