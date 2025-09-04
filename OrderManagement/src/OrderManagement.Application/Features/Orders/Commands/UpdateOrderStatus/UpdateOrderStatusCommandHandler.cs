@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using OrderManagement.Application.Common.Interfaces;
 using OrderManagement.Application.Common.Models;
+using OrderManagement.Application.Features.Orders.Specifications;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.Enums;
 
@@ -23,7 +24,8 @@ namespace OrderManagement.Application.Features.Orders.Commands.UpdateOrderStatus
         {
             try
             {
-                var order = await _orderRepository.GetByIdAsync(request.OrderId, cancellationToken);
+                var spec = new OrderByIdWithItemsSpecification(request.OrderId);
+                var order = await _orderRepository.FindOneAsync(spec, cancellationToken);
                 if (order == null)
                     return Result.Failure("Order not found");
 
