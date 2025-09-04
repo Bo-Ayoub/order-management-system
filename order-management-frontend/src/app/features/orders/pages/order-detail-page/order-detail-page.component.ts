@@ -10,7 +10,7 @@ import { OrderService } from '../../services/order.service';
   selector: 'app-order-detail-page',
   standalone: false,
   templateUrl: './order-detail-page.component.html',
-  styleUrls: ['./order-detail-page.component.scss']
+  styleUrls: ['./order-detail-page.component.scss'],
 })
 export class OrderDetailPageComponent implements OnInit, OnDestroy {
   order: Order | null = null;
@@ -36,10 +36,11 @@ export class OrderDetailPageComponent implements OnInit, OnDestroy {
     if (!orderId) return;
 
     this.loading = true;
-    this.orderService.getOrder(orderId)
+    this.orderService
+      .getOrder(orderId)
       .pipe(
         takeUntil(this.destroy$),
-        finalize(() => this.loading = false)
+        finalize(() => (this.loading = false))
       )
       .subscribe({
         next: (order) => {
@@ -47,22 +48,15 @@ export class OrderDetailPageComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           console.error('Failed to load order:', error);
-        }
+        },
       });
   }
 
   onStatusUpdate(event: { orderId: string; status: OrderStatus }): void {
-    this.orderService.updateOrderStatus(event.orderId, event.status)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {
-          console.log('Order status updated');
-          this.loadOrder(); // Reload order to get updated data
-        },
-        error: (error) => {
-          console.error('Failed to update order status:', error);
-        }
-      });
+    // Update the order in the local state immediately for better UX
+    if (this.order && this.order.id === event.orderId) {
+      this.order = { ...this.order, status: event.status };
+    }
   }
 
   onEdit(orderId: string): void {

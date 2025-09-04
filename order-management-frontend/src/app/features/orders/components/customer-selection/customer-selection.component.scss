@@ -1,0 +1,267 @@
+// Custom styles for customer selection component
+// Most styling is handled by Tailwind classes in the template
+
+.customer-selection {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  
+  .header {
+    @apply px-6 py-4 border-b border-gray-200;
+    
+    .title {
+      @apply text-lg font-medium text-gray-900;
+    }
+    
+    .subtitle {
+      @apply mt-1 text-sm text-gray-500;
+    }
+  }
+  
+  .content {
+    @apply p-6;
+    
+    .selected-customer {
+      @apply mb-6;
+      
+      .customer-card {
+        @apply flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg;
+        
+        .customer-info {
+          @apply flex items-center space-x-3;
+          
+          .avatar {
+            @apply h-10 w-10 bg-green-100 rounded-full flex items-center justify-center;
+            
+            svg {
+              @apply h-5 w-5 text-green-600;
+            }
+          }
+          
+          .details {
+            .name {
+              @apply text-sm font-medium text-green-900;
+            }
+            
+            .subtitle {
+              @apply text-sm text-green-700;
+            }
+          }
+        }
+        
+        .remove-button {
+          @apply text-green-600 hover:text-green-800;
+          
+          svg {
+            @apply h-5 w-5;
+          }
+        }
+      }
+    }
+    
+    .customer-search {
+      @apply mb-4;
+      
+      .search-input {
+        @apply block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+      }
+      
+      .search-icon {
+        @apply absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none;
+        
+        svg {
+          @apply h-5 w-5 text-gray-400;
+        }
+      }
+    }
+    
+    .customer-list {
+      @apply max-h-64 overflow-y-auto space-y-2;
+      
+      .customer-item {
+        @apply flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200;
+        
+        .avatar {
+          @apply h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center mr-3;
+          
+          svg {
+            @apply h-4 w-4 text-gray-600;
+          }
+        }
+        
+        .details {
+          @apply flex-1 min-w-0;
+          
+          .name {
+            @apply text-sm font-medium text-gray-900 truncate;
+          }
+          
+          .subtitle {
+            @apply text-sm text-gray-500 truncate;
+          }
+        }
+      }
+      
+      .empty-state {
+        @apply text-center py-8;
+        
+        .icon {
+          @apply mx-auto h-12 w-12 text-gray-400;
+        }
+        
+        .title {
+          @apply mt-2 text-sm font-medium text-gray-900;
+        }
+        
+        .description {
+          @apply mt-1 text-sm text-gray-500;
+        }
+      }
+    }
+    
+    .create-button {
+      @apply mt-4;
+      
+      button {
+        @apply w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+        
+        svg {
+          @apply h-4 w-4 mr-2;
+        }
+      }
+    }
+    
+    .create-form {
+      @apply space-y-4;
+      
+      .form-header {
+        @apply flex items-center justify-between;
+        
+        .title {
+          @apply text-lg font-medium text-gray-900;
+        }
+        
+        .close-button {
+          @apply text-gray-400 hover:text-gray-600;
+          
+          svg {
+            @apply h-5 w-5;
+          }
+        }
+      }
+      
+      .form-content {
+        @apply space-y-4;
+        
+        .basic-info {
+          @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+        }
+        
+        .contact-info {
+          @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+        }
+        
+        .address-section {
+          @apply border-t border-gray-200 pt-4;
+          
+          .title {
+            @apply text-sm font-medium text-gray-900 mb-3;
+          }
+          
+          .address-fields {
+            @apply space-y-4;
+            
+            .address-grid {
+              @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+            }
+          }
+        }
+        
+        .form-actions {
+          @apply flex justify-end space-x-3 pt-4;
+          
+          .cancel-button {
+            @apply px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+          }
+          
+          .submit-button {
+            @apply px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+            
+            .loading-spinner {
+              @apply animate-spin -ml-1 mr-2 h-4 w-4 text-white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Form field styles
+.form-field {
+  label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  
+  input {
+    @apply mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .customer-selection {
+    .content {
+      @apply p-4;
+      
+      .customer-list {
+        @apply max-h-48;
+      }
+      
+      .create-form {
+        .form-content {
+          .basic-info,
+          .contact-info {
+            @apply grid-cols-1;
+          }
+          
+          .address-section {
+            .address-fields {
+              .address-grid {
+                @apply grid-cols-1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Loading states
+.loading {
+  @apply opacity-50 pointer-events-none;
+}
+
+// Animation for customer selection
+.customer-item {
+  transition: all 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Form validation styles
+.form-field {
+  &.error {
+    input {
+      @apply border-red-300 focus:ring-red-500 focus:border-red-500;
+    }
+  }
+  
+  &.success {
+    input {
+      @apply border-green-300 focus:ring-green-500 focus:border-green-500;
+    }
+  }
+}

@@ -7,67 +7,89 @@ export interface Notification {
   title: string;
   message: string;
   duration?: number;
+  timestamp: Date;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
-  private notifications$ = new BehaviorSubject<Notification[]>([]);
+  private notificationsSubject = new BehaviorSubject<Notification[]>([]);
+  public notifications$: Observable<Notification[]> =
+    this.notificationsSubject.asObservable();
 
-  getNotifications(): Observable<Notification[]> {
-    return this.notifications$.asObservable();
-  }
+  constructor() {}
 
-  success(title: string, message: string, duration = 5000) {
-    this.addNotification('success', title, message, duration);
-  }
-
-  error(title: string, message: string, duration = 8000) {
-    this.addNotification('error', title, message, duration);
-  }
-
-  warning(title: string, message: string, duration = 6000) {
-    this.addNotification('warning', title, message, duration);
-  }
-
-  info(title: string, message: string, duration = 5000) {
-    this.addNotification('info', title, message, duration);
-  }
-
-  private addNotification(
-    type: Notification['type'],
-    title: string,
-    message: string,
-    duration: number
-  ) {
-    const notification: Notification = {
-      id: Math.random().toString(36).substr(2, 9),
-      type,
+  showSuccess(message: string, title: string = 'Success'): void {
+    this.addNotification({
+      id: this.generateId(),
+      type: 'success',
       title,
       message,
-      duration,
-    };
+      duration: 5000,
+      timestamp: new Date(),
+    });
+  }
 
-    const currentNotifications = this.notifications$.value;
-    this.notifications$.next([...currentNotifications, notification]);
+  showError(message: string, title: string = 'Error'): void {
+    this.addNotification({
+      id: this.generateId(),
+      type: 'error',
+      title,
+      message,
+      duration: 7000,
+      timestamp: new Date(),
+    });
+  }
 
-    if (duration > 0) {
+  showWarning(message: string, title: string = 'Warning'): void {
+    this.addNotification({
+      id: this.generateId(),
+      type: 'warning',
+      title,
+      message,
+      duration: 6000,
+      timestamp: new Date(),
+    });
+  }
+
+  showInfo(message: string, title: string = 'Info'): void {
+    this.addNotification({
+      id: this.generateId(),
+      type: 'info',
+      title,
+      message,
+      duration: 5000,
+      timestamp: new Date(),
+    });
+  }
+
+  removeNotification(id: string): void {
+    const currentNotifications = this.notificationsSubject.value;
+    const updatedNotifications = currentNotifications.filter(
+      (n) => n.id !== id
+    );
+    this.notificationsSubject.next(updatedNotifications);
+  }
+
+  clearAllNotifications(): void {
+    this.notificationsSubject.next([]);
+  }
+
+  private addNotification(notification: Notification): void {
+    const currentNotifications = this.notificationsSubject.value;
+    const updatedNotifications = [...currentNotifications, notification];
+    this.notificationsSubject.next(updatedNotifications);
+
+    // Auto-remove notification after duration
+    if (notification.duration) {
       setTimeout(() => {
         this.removeNotification(notification.id);
-      }, duration);
+      }, notification.duration);
     }
   }
 
-  removeNotification(id: string) {
-    const currentNotifications = this.notifications$.value;
-    const filteredNotifications = currentNotifications.filter(
-      (n) => n.id !== id
-    );
-    this.notifications$.next(filteredNotifications);
-  }
-
-  clearAll() {
-    this.notifications$.next([]);
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
 }

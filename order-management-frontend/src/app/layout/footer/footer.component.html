@@ -1,0 +1,94 @@
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Company Info -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">Order Management</span>
+        </div>
+        <p class="text-gray-400 text-sm mb-4">
+          Streamline your business operations with our comprehensive order management system. 
+          Manage customers, products, and orders efficiently.
+        </p>
+        <div class="flex space-x-4">
+          <a 
+            *ngFor="let social of socialLinks" 
+            [href]="social.url" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            [title]="social.name"
+          >
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path [attr.d]="social.icon"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li *ngFor="let link of quickLinks">
+            <a 
+              [routerLink]="link.route" 
+              class="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Support</h3>
+        <ul class="space-y-2">
+          <li *ngFor="let link of supportLinks">
+            <a 
+              [routerLink]="link.route" 
+              class="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Company</h3>
+        <ul class="space-y-2">
+          <li *ngFor="let link of companyLinks">
+            <a 
+              [routerLink]="link.route" 
+              class="text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="border-t border-gray-800 mt-8 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="text-sm text-gray-400 mb-4 md:mb-0">
+          © {{ currentYear }} Order Management System. All rights reserved.
+        </div>
+        <div class="flex items-center space-x-6 text-sm text-gray-400">
+          <span>Version 1.0.0</span>
+          <span>•</span>
+          <span>Last updated: {{ getCurrentDate() }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -274,6 +274,10 @@ export class CartService {
   }
 
   private saveCartToStorage(items: CartItem[]): void {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return;
+    }
+
     try {
       const cartData = items.map((item) => ({
         productId: item.product.id,
@@ -286,6 +290,10 @@ export class CartService {
   }
 
   private loadCartFromStorage(): void {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return;
+    }
+
     try {
       const savedCart = localStorage.getItem(this.STORAGE_KEY);
       if (savedCart) {

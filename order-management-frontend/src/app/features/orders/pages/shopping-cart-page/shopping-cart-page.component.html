@@ -2,33 +2,411 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Page Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Shopping Cart</h1>
-      <p class="mt-2 text-sm text-gray-600">Review your items before checkout</p>
+      <h1 class="text-3xl font-bold text-gray-900">{{ getStepTitle() }}</h1>
+      <p class="mt-2 text-sm text-gray-600">{{ getStepDescription() }}</p>
     </div>
 
-    <!-- Shopping Cart Component -->
-    <div class="max-w-4xl mx-auto">
-      <app-shopping-cart
-        [showHeader]="false"
-        [showCheckoutButton]="true"
-        [compact]="false"
-        (checkout)="onCheckout()"
-        (itemUpdated)="onItemUpdated()"
-        (itemRemoved)="onItemRemoved()"
-      ></app-shopping-cart>
+    <!-- Progress Steps -->
+    <div class="mb-8">
+      <nav class="flex items-center justify-center" aria-label="Progress">
+        <ol class="flex items-center space-x-5">
+          <li
+            *ngFor="
+              let step of [
+                'cart',
+                'customer',
+                'shipping',
+                'review',
+                'confirmation'
+              ];
+              let i = index
+            "
+            [class]="getStepClass(step, i)"
+          >
+            <div class="flex items-center">
+              <div [class]="getStepCircleClass(step, i)">
+                <span
+                  *ngIf="getStepNumber(step, i) !== null"
+                  class="text-sm font-medium"
+                >
+                  {{ getStepNumber(step, i) }}
+                </span>
+                <svg
+                  *ngIf="getStepNumber(step, i) === null"
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <span
+                [class]="getStepLabelClass(step, i)"
+                class="ml-2 text-sm font-medium"
+              >
+                {{ getStepLabel(step) }}
+              </span>
+            </div>
+            <div *ngIf="i < 4" class="ml-5 w-16 h-0.5 bg-gray-300"></div>
+          </li>
+        </ol>
+      </nav>
     </div>
 
-    <!-- Continue Shopping -->
-    <div class="mt-8 text-center">
-      <a
-        routerLink="/products"
-        class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    <!-- Step Content -->
+    <div class="space-y-6">
+      <!-- Cart Step -->
+      <div *ngIf="currentStep === 'cart'" class="max-w-4xl mx-auto">
+        <app-shopping-cart
+          [showHeader]="false"
+          [showCheckoutButton]="true"
+          [compact]="false"
+          (checkout)="onCheckout()"
+          (itemUpdated)="onItemUpdated()"
+          (itemRemoved)="onItemRemoved()"
+        ></app-shopping-cart>
+
+        <!-- Continue Shopping -->
+        <div class="mt-8 text-center">
+          <a
+            routerLink="/products"
+            class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            <svg
+              class="h-4 w-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              ></path>
+            </svg>
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+
+      <!-- Customer Selection Step -->
+      <div *ngIf="currentStep === 'customer'">
+        <app-customer-selection
+          [selectedCustomer]="selectedCustomer"
+          (customerSelected)="onCustomerSelected($event)"
+          (customerCreated)="onCustomerCreated($event)"
+        ></app-customer-selection>
+
+        <div class="mt-6 flex justify-end">
+          <button
+            (click)="onBackToCart()"
+            class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Back to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Shipping Step -->
+      <div
+        *ngIf="currentStep === 'shipping'"
+        class="bg-white rounded-lg shadow-sm p-6"
       >
-        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        Continue Shopping
-      </a>
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+          Shipping Information
+        </h3>
+
+        <form (ngSubmit)="onShippingComplete()" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Street Address *</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="shippingAddress.street"
+              name="street"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >City *</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="shippingAddress.city"
+                name="city"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >State *</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="shippingAddress.state"
+                name="state"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >ZIP Code *</label
+              >
+              <input
+                type="text"
+                [(ngModel)]="shippingAddress.zipCode"
+                name="zipCode"
+                required
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Country *</label
+            >
+            <input
+              type="text"
+              [(ngModel)]="shippingAddress.country"
+              name="country"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Order Notes</label
+            >
+            <textarea
+              [(ngModel)]="orderNotes"
+              name="notes"
+              rows="3"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              placeholder="Any special instructions for this order..."
+            ></textarea>
+          </div>
+
+          <div class="flex justify-between">
+            <button
+              type="button"
+              (click)="onBackToCustomer()"
+              class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Back to Customer
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Continue to Review
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Review Step -->
+      <div *ngIf="currentStep === 'review'" class="space-y-6">
+        <!-- Customer Info -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">
+            Customer Information
+          </h3>
+          <div class="flex items-center space-x-3">
+            <div
+              class="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center"
+            >
+              <svg
+                class="h-5 w-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-900">
+                {{ selectedCustomer?.firstName }}
+                {{ selectedCustomer?.lastName }}
+              </p>
+              <p class="text-sm text-gray-500">
+                {{ selectedCustomer?.email }} •
+                {{ selectedCustomer?.phoneNumber || "No phone" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">
+            Shipping Address
+          </h3>
+          <div class="text-sm text-gray-600">
+            <p>{{ shippingAddress.street }}</p>
+            <p>
+              {{ shippingAddress.city }}, {{ shippingAddress.state }}
+              {{ shippingAddress.zipCode }}
+            </p>
+            <p>{{ shippingAddress.country }}</p>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Order Items</h3>
+          <div class="space-y-4">
+            <div
+              *ngFor="let item of cart.items"
+              class="flex items-center justify-between py-2 border-b border-gray-200"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="h-10 w-10 bg-gray-100 rounded-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="h-5 w-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900">
+                    {{ item.product.name }}
+                  </p>
+                  <p class="text-sm text-gray-500">Qty: {{ item.quantity }}</p>
+                </div>
+              </div>
+              <p class="text-sm font-medium text-gray-900">
+                {{
+                  formatPrice(
+                    item.product.price * item.quantity,
+                    item.product.currency
+                  )
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-gray-200">
+            <div class="flex justify-between text-lg font-medium">
+              <span>Total</span>
+              <span>{{ formatPrice(cart.totalAmount, cart.currency) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Notes -->
+        <div *ngIf="orderNotes" class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Order Notes</h3>
+          <p class="text-sm text-gray-600">{{ orderNotes }}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex justify-between">
+          <button
+            (click)="onBackToShipping()"
+            class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Back to Shipping
+          </button>
+          <button
+            (click)="onPlaceOrder()"
+            [disabled]="creatingOrder"
+            class="px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span *ngIf="creatingOrder" class="flex items-center">
+              <svg
+                class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Placing Order...
+            </span>
+            <span *ngIf="!creatingOrder">Place Order</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Confirmation Step -->
+      <div
+        *ngIf="currentStep === 'confirmation'"
+        class="bg-white rounded-lg shadow-sm p-8 text-center"
+      >
+        <div
+          class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100"
+        >
+          <svg
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="mt-4 text-lg font-medium text-gray-900">
+          Order Placed Successfully!
+        </h3>
+        <p class="mt-2 text-sm text-gray-500">
+          Your order has been placed and is being processed. You will receive a
+          confirmation email shortly.
+        </p>
+        <div class="mt-6">
+          <button
+            (click)="onStartNewOrder()"
+            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Start New Order
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

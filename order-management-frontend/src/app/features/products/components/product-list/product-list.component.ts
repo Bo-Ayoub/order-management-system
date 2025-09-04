@@ -1,17 +1,28 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Subject, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs';
 
-import { Product, ProductSummary } from '../../../../shared/models/product.model';
+import {
+  Product,
+  ProductSummary,
+} from '../../../../shared/models/product.model';
 import { PaginatedResponse } from '../../../../shared/models/api-response.model';
 import { ProductService, ProductFilters } from '../../services/product.service';
+import { CartService } from '../../../orders/services/cart.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: false,
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   @Input() products: Product[] = [];
@@ -20,27 +31,30 @@ export class ProductListComponent implements OnInit, OnDestroy {
   @Input() searchTerm = '';
   @Input() selectedCategory = '';
   @Input() categories: string[] = [];
-  
+
   @Output() searchChange = new EventEmitter<string>();
   @Output() categoryChange = new EventEmitter<string>();
   @Output() pageChange = new EventEmitter<number>();
   @Output() deleteProduct = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<void>();
+  @Output() addToCart = new EventEmitter<{
+    productId: string;
+    quantity: number;
+  }>();
 
   private destroy$ = new Subject<void>();
   private searchSubject = new Subject<string>();
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     // Setup search debouncing
     this.searchSubject
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(searchTerm => {
+      .pipe(debounceTime(300), distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe((searchTerm) => {
         this.searchChange.emit(searchTerm);
       });
   }
@@ -76,10 +90,18 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.refresh.emit();
   }
 
+  onAddToCart(productId: string, quantity: number = 1): void {
+    this.addToCart.emit({ productId, quantity });
+  }
+
+  canAddToCart(product: Product): boolean {
+    return product.isActive && product.stockQuantity > 0;
+  }
+
   formatPrice(price: number, currency: string): string {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: currency
+      currency: currency,
     }).format(price);
   }
 
@@ -101,19 +123,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   getPageNumbers(): number[] {
     if (!this.pagination) return [];
-    
+
     const currentPage = this.pagination.pageNumber;
     const totalPages = this.pagination.totalPages;
     const pages: number[] = [];
-    
+
     // Show up to 5 page numbers
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, startPage + 4);
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    
+
     return pages;
   }
 

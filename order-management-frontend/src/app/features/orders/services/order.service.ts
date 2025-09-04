@@ -57,14 +57,14 @@ export class OrderService {
     return this.apiService.post<void>(`/orders/${id}/confirm`, {});
   }
 
-  updateOrderStatus(id: string, status: OrderStatus): Observable<void> {
-    return this.apiService.put<void>(`/orders/${id}/status`, {
+  updateOrderStatus(id: string, status: OrderStatus): Observable<Order> {
+    return this.apiService.put<Order>(`/orders/${id}/status`, {
       orderId: id,
       newStatus: status,
     });
   }
 
-  cancelOrder(id: string): Observable<void> {
+  cancelOrder(id: string): Observable<Order> {
     return this.updateOrderStatus(id, OrderStatus.Cancelled);
   }
 

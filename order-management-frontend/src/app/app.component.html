@@ -1,15 +1,21 @@
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-gray-50 flex flex-col">
   <!-- Header -->
   <app-header></app-header>
-  
+
   <!-- Main Content -->
-  <div class="flex">
+  <div class="flex flex-1">
     <!-- Sidebar -->
     <app-sidebar></app-sidebar>
-    
+
     <!-- Page Content -->
     <main class="flex-1">
       <router-outlet></router-outlet>
     </main>
   </div>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+
+  <!-- Notifications -->
+  <app-notification></app-notification>
 </div>

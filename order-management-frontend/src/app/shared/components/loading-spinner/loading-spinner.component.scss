@@ -1,0 +1,97 @@
+// Custom styles for loading spinner component
+// Most styling is handled by Tailwind classes in the template
+
+.loading-spinner {
+  &.overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+  }
+  
+  &.inline {
+    @apply flex items-center justify-center;
+  }
+  
+  .spinner-container {
+    @apply flex flex-col items-center space-y-3;
+    
+    .spinner {
+      @apply animate-spin rounded-full border-2 border-t-transparent;
+      
+      &.small {
+        @apply h-4 w-4;
+      }
+      
+      &.medium {
+        @apply h-8 w-8;
+      }
+      
+      &.large {
+        @apply h-12 w-12;
+      }
+      
+      &.primary {
+        @apply border-blue-600;
+      }
+      
+      &.secondary {
+        @apply border-gray-600;
+      }
+      
+      &.white {
+        @apply border-white;
+      }
+    }
+    
+    .loading-message {
+      @apply text-sm font-medium;
+      
+      &.primary {
+        @apply text-blue-600;
+      }
+      
+      &.secondary {
+        @apply text-gray-600;
+      }
+      
+      &.white {
+        @apply text-white;
+      }
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Custom spinner styles for different themes
+.spinner-primary {
+  border-color: #3b82f6;
+  border-top-color: transparent;
+}
+
+.spinner-secondary {
+  border-color: #6b7280;
+  border-top-color: transparent;
+}
+
+.spinner-white {
+  border-color: #ffffff;
+  border-top-color: transparent;
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .loading-spinner {
+    .spinner-container {
+      .loading-message {
+        @apply text-xs;
+      }
+    }
+  }
+}

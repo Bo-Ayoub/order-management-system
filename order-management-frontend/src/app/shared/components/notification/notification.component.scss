@@ -1,0 +1,176 @@
+// Custom styles for notification component
+// Most styling is handled by Tailwind classes in the template
+
+.notification-container {
+  @apply fixed top-4 right-4 z-50 space-y-2 max-w-sm;
+  
+  .notification {
+    @apply rounded-md border p-4 shadow-lg transition-all duration-300 ease-in-out transform;
+    
+    &.success {
+      @apply bg-green-50 border-green-200 text-green-800;
+      
+      .icon {
+        @apply text-green-400;
+      }
+    }
+    
+    &.error {
+      @apply bg-red-50 border-red-200 text-red-800;
+      
+      .icon {
+        @apply text-red-400;
+      }
+    }
+    
+    &.warning {
+      @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+      
+      .icon {
+        @apply text-yellow-400;
+      }
+    }
+    
+    &.info {
+      @apply bg-blue-50 border-blue-200 text-blue-800;
+      
+      .icon {
+        @apply text-blue-400;
+      }
+    }
+    
+    .notification-content {
+      @apply flex;
+      
+      .icon-container {
+        @apply flex-shrink-0;
+        
+        .icon {
+          @apply h-5 w-5;
+        }
+      }
+      
+      .text-content {
+        @apply ml-3 flex-1;
+        
+        .title {
+          @apply text-sm font-medium;
+        }
+        
+        .message {
+          @apply mt-1 text-sm;
+        }
+      }
+      
+      .close-button {
+        @apply ml-4 flex-shrink-0 flex;
+        
+        button {
+          @apply inline-flex rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white;
+          
+          &.success {
+            @apply focus:ring-green-500;
+          }
+          
+          &.error {
+            @apply focus:ring-red-500;
+          }
+          
+          &.warning {
+            @apply focus:ring-yellow-500;
+          }
+          
+          &.info {
+            @apply focus:ring-blue-500;
+          }
+          
+          svg {
+            @apply h-5 w-5;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+// Animation classes
+.slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.slide-out {
+  animation: slideOut 0.3s ease-in-out;
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .notification-container {
+    @apply top-2 right-2 left-2 max-w-none;
+    
+    .notification {
+      @apply p-3;
+      
+      .notification-content {
+        .text-content {
+          @apply ml-2;
+          
+          .title {
+            @apply text-xs;
+          }
+          
+          .message {
+            @apply text-xs;
+          }
+        }
+        
+        .close-button {
+          @apply ml-2;
+        }
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .notification {
+    &.success {
+      @apply bg-green-900 border-green-700 text-green-100;
+    }
+    
+    &.error {
+      @apply bg-red-900 border-red-700 text-red-100;
+    }
+    
+    &.warning {
+      @apply bg-yellow-900 border-yellow-700 text-yellow-100;
+    }
+    
+    &.info {
+      @apply bg-blue-900 border-blue-700 text-blue-100;
+    }
+  }
+}

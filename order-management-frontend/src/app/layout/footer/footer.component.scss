@@ -1,0 +1,126 @@
+// Custom styles for footer component
+// Most styling is handled by Tailwind classes in the template
+
+.footer {
+  @apply bg-gray-900 text-white;
+  
+  .footer-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+    
+    .footer-grid {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+      
+      .company-section {
+        @apply lg:col-span-1;
+        
+        .logo-section {
+          @apply flex items-center space-x-2 mb-4;
+          
+          .logo-icon {
+            @apply h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center;
+            
+            svg {
+              @apply h-5 w-5 text-white;
+            }
+          }
+          
+          .logo-text {
+            @apply text-xl font-bold;
+          }
+        }
+        
+        .company-description {
+          @apply text-gray-400 text-sm mb-4;
+        }
+        
+        .social-links {
+          @apply flex space-x-4;
+          
+          .social-link {
+            @apply text-gray-400 hover:text-white transition-colors duration-200;
+            
+            svg {
+              @apply h-5 w-5;
+            }
+          }
+        }
+      }
+      
+      .links-section {
+        h3 {
+          @apply text-lg font-semibold mb-4;
+        }
+        
+        .links-list {
+          @apply space-y-2;
+          
+          .link-item {
+            .link {
+              @apply text-gray-400 hover:text-white transition-colors duration-200 text-sm;
+            }
+          }
+        }
+      }
+    }
+    
+    .footer-bottom {
+      @apply border-t border-gray-800 mt-8 pt-8;
+      
+      .bottom-content {
+        @apply flex flex-col md:flex-row justify-between items-center;
+        
+        .copyright {
+          @apply text-sm text-gray-400 mb-4 md:mb-0;
+        }
+        
+        .version-info {
+          @apply flex items-center space-x-6 text-sm text-gray-400;
+          
+          .separator {
+            @apply text-gray-600;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .footer {
+    .footer-container {
+      .footer-grid {
+        @apply grid-cols-1 gap-6;
+        
+        .company-section {
+          @apply text-center;
+          
+          .social-links {
+            @apply justify-center;
+          }
+        }
+        
+        .links-section {
+          @apply text-center;
+        }
+      }
+      
+      .footer-bottom {
+        .bottom-content {
+          @apply text-center;
+          
+          .version-info {
+            @apply justify-center mt-4;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .footer {
+    @apply bg-gray-900;
+  }
+}

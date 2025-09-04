@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { Order, OrderStatus } from '../../../../shared/models/order.model';
+import { OrderService } from '../../services/order.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -19,8 +21,15 @@ export class OrderDetailComponent implements OnInit {
   }>();
   @Output() edit = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
+  @Output() statusUpdated = new EventEmitter<OrderStatus>();
 
   orderStatuses = Object.values(OrderStatus);
+  updatingStatus = false;
+
+  constructor(
+    private orderService: OrderService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -42,10 +51,28 @@ export class OrderDetailComponent implements OnInit {
   }
 
   private updateOrderStatus(status: OrderStatus): void {
-    if (this.order) {
-      // Call your service to update the order status
-      console.log('Updating order status to:', status);
-      // this.orderService.updateOrderStatus(this.order.id, status).subscribe(...);
+    if (this.order && !this.updatingStatus) {
+      this.updatingStatus = true;
+
+      this.orderService.updateOrderStatus(this.order.id, status).subscribe({
+        next: (updatedOrder) => {
+          this.notificationService.showSuccess(
+            `Order status updated to ${status}`
+          );
+          this.statusUpdated.emit(status);
+          this.statusUpdate.emit({
+            orderId: this.order!.id,
+            status: status,
+          });
+          this.updatingStatus = false;
+        },
+        error: (error) => {
+          this.notificationService.showError(
+            `Failed to update order status: ${error.message || 'Unknown error'}`
+          );
+          this.updatingStatus = false;
+        },
+      });
     }
   }
 

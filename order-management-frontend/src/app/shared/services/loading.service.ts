@@ -2,35 +2,27 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoadingService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
-  private loadingCounter = 0;
+  public loading$: Observable<boolean> = this.loadingSubject.asObservable();
 
-  loading$: Observable<boolean> = this.loadingSubject.asObservable();
+  constructor() {}
 
-  show(): void {
-    this.loadingCounter++;
-    if (this.loadingCounter === 1) {
-      this.loadingSubject.next(true);
-    }
+  setLoading(loading: boolean): void {
+    this.loadingSubject.next(loading);
   }
 
-  hide(): void {
-    this.loadingCounter = Math.max(0, this.loadingCounter - 1);
-    if (this.loadingCounter === 0) {
-      this.loadingSubject.next(false);
-    }
-  }
-
-  isLoading(): boolean {
+  getLoading(): boolean {
     return this.loadingSubject.value;
   }
 
-  // Force hide - useful for error scenarios
-  forceHide(): void {
-    this.loadingCounter = 0;
-    this.loadingSubject.next(false);
+  show(): void {
+    this.setLoading(true);
+  }
+
+  hide(): void {
+    this.setLoading(false);
   }
 }
