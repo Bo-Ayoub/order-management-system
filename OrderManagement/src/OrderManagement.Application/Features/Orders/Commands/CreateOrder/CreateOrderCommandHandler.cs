@@ -26,84 +26,86 @@ namespace OrderManagement.Application.Features.Orders.Commands.CreateOrder
 
         public async Task<Result<Guid>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            try
-            {
-                await _unitOfWork.BeginTransactionAsync(cancellationToken);
 
-                // Get customer
-                var customer = await _customerRepository.GetByIdAsync(request.CustomerId, cancellationToken);
-                if (customer == null)
-                    return Result<Guid>.Failure("Customer not found");
-
-                // Create order
-                var order = new Order(customer, request.ShippingAddress, request.Notes);
-
-                // Add order items
-                foreach (var item in request.Items)
-                {
-                    var product = await _productRepository.GetByIdAsync(item.ProductId, cancellationToken);
-                    if (product == null)
-                        return Result<Guid>.Failure($"Product with ID {item.ProductId} not found");
-
-                    if (!product.IsInStock(item.Quantity))
-                        return Result<Guid>.Failure($"Insufficient stock for product {product.Name}");
-
-                    order.AddOrderItem(product, item.Quantity);
-
-                    // Update product stock
-                    product.UpdateStock(product.StockQuantity - item.Quantity);
-                    await _productRepository.UpdateAsync(product, cancellationToken);
-                }
-
-                await _orderRepository.AddAsync(order, cancellationToken);
-                await _unitOfWork.SaveChangesAsync(cancellationToken);
-                await _unitOfWork.CommitTransactionAsync(cancellationToken);
-
-                return Result<Guid>.Success(order.Id);
-            }
-            catch (Exception ex)
-            {
-                await _unitOfWork.RollbackTransactionAsync(cancellationToken);
-                return Result<Guid>.Failure($"Failed to create order: {ex.Message}");
-            }
 
             //try
             //{
-            //    return await _unitOfWork.ExecuteTransactionAsync(async () =>
+            //    await _unitOfWork.BeginTransactionAsync(cancellationToken);
+
+            //    // Get customer
+            //    var customer = await _customerRepository.GetByIdAsync(request.CustomerId, cancellationToken);
+            //    if (customer == null)
+            //        return Result<Guid>.Failure("Customer not found");
+
+            //    // Create order
+            //    var order = new Order(customer, request.ShippingAddress, request.Notes);
+
+            //    // Add order items
+            //    foreach (var item in request.Items)
             //    {
-            //        // Get customer
-            //        var customer = await _customerRepository.GetByIdAsync(request.CustomerId, cancellationToken);
-            //        if (customer == null)
-            //            return Result<Guid>.Failure("Customer not found");
+            //        var product = await _productRepository.GetByIdAsync(item.ProductId, cancellationToken);
+            //        if (product == null)
+            //            return Result<Guid>.Failure($"Product with ID {item.ProductId} not found");
 
-            //        // Create order
-            //        var order = new Order(customer, request.ShippingAddress, request.Notes);
+            //        if (!product.IsInStock(item.Quantity))
+            //            return Result<Guid>.Failure($"Insufficient stock for product {product.Name}");
 
-            //        // Add order items
-            //        foreach (var item in request.Items)
-            //        {
-            //            var product = await _productRepository.GetByIdAsync(item.ProductId, cancellationToken);
-            //            if (product == null)
-            //                return Result<Guid>.Failure($"Product with ID {item.ProductId} not found");
+            //        order.AddOrderItem(product, item.Quantity);
 
-            //            if (!product.IsInStock(item.Quantity))
-            //                return Result<Guid>.Failure($"Insufficient stock for product {product.Name}");
+            //        // Update product stock
+            //        product.UpdateStock(product.StockQuantity - item.Quantity);
+            //        await _productRepository.UpdateAsync(product, cancellationToken);
+            //    }
 
-            //            order.AddOrderItem(product, item.Quantity);
+            //    await _orderRepository.AddAsync(order, cancellationToken);
+            //    await _unitOfWork.SaveChangesAsync(cancellationToken);
+            //    await _unitOfWork.CommitTransactionAsync(cancellationToken);
 
-            //            // Update product stock
-            //            product.UpdateStock(product.StockQuantity - item.Quantity);
-            //            await _productRepository.UpdateAsync(product, cancellationToken);
-            //        }
-
-            //        await _orderRepository.AddAsync(order, cancellationToken);
-            //        return Result<Guid>.Success(order.Id);
-            //    }, cancellationToken);
+            //    return Result<Guid>.Success(order.Id);
             //}
             //catch (Exception ex)
             //{
+            //    await _unitOfWork.RollbackTransactionAsync(cancellationToken);
             //    return Result<Guid>.Failure($"Failed to create order: {ex.Message}");
             //}
+
+            try
+            {
+                return await _unitOfWork.ExecuteTransactionAsync(async () =>
+                {
+                    // Get customer
+                    var customer = await _customerRepository.GetByIdAsync(request.CustomerId, cancellationToken);
+                    if (customer == null)
+                        return Result<Guid>.Failure("Customer not found");
+
+                    // Create order
+                    var order = new Order(customer, request.ShippingAddress, request.Notes);
+
+                    // Add order items
+                    foreach (var item in request.Items)
+                    {
+                        var product = await _productRepository.GetByIdAsync(item.ProductId, cancellationToken);
+                        if (product == null)
+                            return Result<Guid>.Failure($"Product with ID {item.ProductId} not found");
+
+                        if (!product.IsInStock(item.Quantity))
+                            return Result<Guid>.Failure($"Insufficient stock for product {product.Name}");
+
+                        order.AddOrderItem(product, item.Quantity);
+
+                        // Update product stock
+                        product.UpdateStock(product.StockQuantity - item.Quantity);
+                        await _productRepository.UpdateAsync(product, cancellationToken);
+                    }
+
+                    await _orderRepository.AddAsync(order, cancellationToken);
+                    return Result<Guid>.Success(order.Id);
+                }, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure($"Failed to create order: {ex.Message}");
+            }
         }
     }
 }

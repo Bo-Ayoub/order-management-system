@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using OrderManagement.Application.Common.Interfaces;
+using OrderManagement.Application.Common.Models;
 using OrderManagement.Application.Features.Orders.Commands.CreateOrder;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.ValueObjects;
@@ -18,10 +19,16 @@ public class CreateOrderCommandHandlerTests
 
     public CreateOrderCommandHandlerTests()
     {
+
         _orderRepository = new Mock<IRepository<Order>>();
         _customerRepository = new Mock<IRepository<Customer>>();
         _productRepository = new Mock<IRepository<Product>>();
         _unitOfWork = new Mock<IUnitOfWork>();
+
+        _unitOfWork.Setup(u => u.ExecuteTransactionAsync<Result<Guid>>(
+        It.IsAny<Func<Task<Result<Guid>>>>(),
+        It.IsAny<CancellationToken>()))
+        .Returns<Func<Task<Result<Guid>>>, CancellationToken>(async (operation, ct) => await operation());
 
         _handler = new CreateOrderCommandHandler(
             _orderRepository.Object,
@@ -59,14 +66,19 @@ public class CreateOrderCommandHandlerTests
         Assert.True(result.IsSuccess);
         Assert.NotEqual(Guid.Empty, result.Value);
 
-        _unitOfWork.Verify(u => u.BeginTransactionAsync(It.IsAny<CancellationToken>()), Times.Once);
-        _unitOfWork.Verify(u => u.CommitTransactionAsync(It.IsAny<CancellationToken>()), Times.Once);
+        // UPDATE: Verify the new method instead of old transaction methods
+        _unitOfWork.Verify(u => u.ExecuteTransactionAsync<Result<Guid>>(
+            It.IsAny<Func<Task<Result<Guid>>>>(),
+            It.IsAny<CancellationToken>()), Times.Once);
+
         _orderRepository.Verify(r => r.AddAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()), Times.Once);
+        _productRepository.Verify(r => r.UpdateAsync(It.IsAny<Product>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
     public async Task Handle_WithInvalidCustomer_ShouldReturnFailure()
     {
+       
         // Arrange
         var command = new CreateOrderCommand(
             Guid.NewGuid(),
@@ -81,11 +93,17 @@ public class CreateOrderCommandHandlerTests
         // Assert
         Assert.False(result.IsSuccess);
         Assert.Equal("Customer not found", result.Error);
+
+        // The transaction method should still be called even for failures
+        _unitOfWork.Verify(u => u.ExecuteTransactionAsync<Result<Guid>>(
+            It.IsAny<Func<Task<Result<Guid>>>>(),
+            It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
     public async Task Handle_WithInsufficientStock_ShouldReturnFailure()
     {
+      
         // Arrange
         var customerId = Guid.NewGuid();
         var productId = Guid.NewGuid();
@@ -109,5 +127,9 @@ public class CreateOrderCommandHandlerTests
         // Assert
         Assert.False(result.IsSuccess);
         Assert.Contains("Insufficient stock", result.Error);
+
+        _unitOfWork.Verify(u => u.ExecuteTransactionAsync<Result<Guid>>(
+            It.IsAny<Func<Task<Result<Guid>>>>(),
+            It.IsAny<CancellationToken>()), Times.Once);
     }
 }
