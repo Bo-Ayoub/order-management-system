@@ -66,6 +66,44 @@ namespace OrderManagement.Application.Features.Orders.Commands.CreateOrder
                 await _unitOfWork.RollbackTransactionAsync(cancellationToken);
                 return Result<Guid>.Failure($"Failed to create order: {ex.Message}");
             }
+
+            //try
+            //{
+            //    return await _unitOfWork.ExecuteTransactionAsync(async () =>
+            //    {
+            //        // Get customer
+            //        var customer = await _customerRepository.GetByIdAsync(request.CustomerId, cancellationToken);
+            //        if (customer == null)
+            //            return Result<Guid>.Failure("Customer not found");
+
+            //        // Create order
+            //        var order = new Order(customer, request.ShippingAddress, request.Notes);
+
+            //        // Add order items
+            //        foreach (var item in request.Items)
+            //        {
+            //            var product = await _productRepository.GetByIdAsync(item.ProductId, cancellationToken);
+            //            if (product == null)
+            //                return Result<Guid>.Failure($"Product with ID {item.ProductId} not found");
+
+            //            if (!product.IsInStock(item.Quantity))
+            //                return Result<Guid>.Failure($"Insufficient stock for product {product.Name}");
+
+            //            order.AddOrderItem(product, item.Quantity);
+
+            //            // Update product stock
+            //            product.UpdateStock(product.StockQuantity - item.Quantity);
+            //            await _productRepository.UpdateAsync(product, cancellationToken);
+            //        }
+
+            //        await _orderRepository.AddAsync(order, cancellationToken);
+            //        return Result<Guid>.Success(order.Id);
+            //    }, cancellationToken);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Result<Guid>.Failure($"Failed to create order: {ex.Message}");
+            //}
         }
     }
 }

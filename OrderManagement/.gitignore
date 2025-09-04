@@ -1,2 +1,55 @@
-# Ignore Visual Studio working files
-.vs/
+# ---- .NET build artifacts ----
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.sourcelink.json
+*.genruntimeconfig.cache
+*.AssemblyInfoInputs.cache
+*.AssemblyReference.cache
+*.CoreCompileInputs.cache
+*.Up2Date
+*.csproj.user
+
+# VS / Rider / VS Code
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs
+
+# ---- ASP.NET / EF Core ----
+*.dbmdl
+*.bak
+*.mdf
+*.ldf
+Migrations/
+
+# ---- Logs ----
+logs/
+*.log
+*.txt
+
+# ---- Angular / Node ----
+node_modules/
+dist/
+.angular/
+*.ngsummary.json
+*.ngfactory.js
+
+# ---- Environment / secrets ----
+.env
+*.secrets.json
+
+# ---- Docker ----
+docker-compose.override.yml
+.docker/
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db

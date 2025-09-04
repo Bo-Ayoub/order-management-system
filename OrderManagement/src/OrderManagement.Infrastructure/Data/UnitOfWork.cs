@@ -1,4 +1,5 @@
-﻿using OrderManagement.Application.Common.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderManagement.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,29 @@ namespace OrderManagement.Infrastructure.Data
         public async Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
         {
             await _context.RollbackTransactionAsync(cancellationToken);
+        }
+        public async Task<TResult> ExecuteTransactionAsync<TResult>(
+        Func<Task<TResult>> operation,
+        CancellationToken cancellationToken = default)
+        {
+            var strategy = _context.Database.CreateExecutionStrategy();
+
+            return await strategy.ExecuteAsync(async () =>
+            {
+                using var transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
+                try
+                {
+                    var result = await operation();
+                    await _context.SaveChangesAsync(cancellationToken);
+                    await transaction.CommitAsync(cancellationToken);
+                    return result;
+                }
+                catch
+                {
+                    await transaction.RollbackAsync(cancellationToken);
+                    throw;
+                }
+            });
         }
 
         public void Dispose()

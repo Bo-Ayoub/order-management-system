@@ -3511,90 +3511,135 @@ SELECT 1
 2025-09-02 18:28:40.780 +00:00 [INF] Executed endpoint 'Health checks'
 2025-09-02 18:28:40.783 +00:00 [INF] Response: GET /health responded 200 in 15ms
 2025-09-02 18:28:40.788 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 24.8777ms
-17:13:23.124 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:13:23.126 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:13:23.129 +00:00 INF] Response: GET /health responded 200 in 10ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:13:23.132 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 18.1207ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:13:53.193 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:13:53.196 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:13:53.198 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:13:53.202 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:13:53.204 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:13:53.207 +00:00 INF] Response: GET /health responded 200 in 10ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:13:53.209 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 15.43ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:14:23.295 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:14:23.298 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:14:23.300 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:14:23.304 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:14:23.308 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:14:23.311 +00:00 INF] Response: GET /health responded 200 in 13ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:14:23.316 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 21.6309ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:14:53.386 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:14:53.388 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:14:53.391 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:14:53.396 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:14:53.398 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:14:53.401 +00:00 INF] Response: GET /health responded 200 in 12ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:14:53.404 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 18.0369ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:15:23.499 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:15:23.503 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:15:23.507 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:15:23.512 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:15:23.516 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:15:23.519 +00:00 INF] Response: GET /health responded 200 in 16ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:15:23.521 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 22.4351ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:15:53.583 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:15:53.586 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:15:53.590 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:15:53.594 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:15:53.596 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:15:53.599 +00:00 INF] Response: GET /health responded 200 in 12ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:15:53.601 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 17.7089ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:16:23.698 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:16:23.700 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:16:23.702 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:16:23.706 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:16:23.708 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:16:23.713 +00:00 INF] Response: GET /health responded 200 in 12ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:16:23.717 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.2786ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:16:53.789 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:16:53.793 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:16:53.796 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:16:53.800 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:16:53.803 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:16:53.806 +00:00 INF] Response: GET /health responded 200 in 12ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:16:53.810 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 20.8655ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:17:23.897 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:17:23.900 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:17:23.902 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:17:23.907 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:17:23.910 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:17:23.912 +00:00 INF] Response: GET /health responded 200 in 12ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:17:23.917 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.5405ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:17:54.003 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:17:54.005 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:17:54.007 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:17:54.013 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:17:54.017 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:17:54.019 +00:00 INF] Response: GET /health responded 200 in 13ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:17:54.022 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.2456ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:18:24.090 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
-[2025-09-02 17:18:24.092 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
-[2025-09-02 17:18:24.096 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:18:24.101 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
-[2025-09-02 17:18:24.105 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
-[2025-09-02 17:18:24.107 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+2025-09-02 18:29:10.882 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:29:10.885 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:29:10.887 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:29:10.891 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:29:10.896 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:29:10.905 +00:00 [INF] Response: GET /health responded 200 in 20ms
+2025-09-02 18:29:10.910 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 27.5823ms
+2025-09-02 18:29:40.978 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:29:40.981 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:29:40.982 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:29:40.987 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:29:40.990 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:29:40.992 +00:00 [INF] Response: GET /health responded 200 in 11ms
+2025-09-02 18:29:40.996 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 18.2982ms
+2025-09-02 18:30:11.093 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:30:11.532 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:30:11.932 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:30:12.254 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:30:12.600 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:30:12.993 +00:00 [INF] Response: GET /health responded 200 in 1461ms
+2025-09-02 18:30:13.181 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 2087.6833ms
+2025-09-02 18:30:43.282 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:30:43.326 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:30:43.343 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:30:43.375 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:30:43.390 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:30:43.396 +00:00 [INF] Response: GET /health responded 200 in 69ms
+2025-09-02 18:30:43.403 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 121.2591ms
+2025-09-02 18:31:13.472 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:31:13.476 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:31:13.479 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:31:13.484 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:31:13.486 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:31:13.488 +00:00 [INF] Response: GET /health responded 200 in 11ms
+2025-09-02 18:31:13.490 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 17.7079ms
+2025-09-02 18:31:43.570 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:31:43.574 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:31:43.577 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:31:43.582 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:31:43.584 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:31:43.589 +00:00 [INF] Response: GET /health responded 200 in 14ms
+2025-09-02 18:31:43.591 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 21.0229ms
+2025-09-02 18:32:13.660 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:32:13.664 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:32:13.666 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:32:13.673 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:32:13.675 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:32:13.677 +00:00 [INF] Response: GET /health responded 200 in 13ms
+2025-09-02 18:32:13.680 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.7972ms
+2025-09-02 18:32:43.810 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:32:43.817 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:32:43.820 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:32:43.826 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:32:43.829 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:32:43.832 +00:00 [INF] Response: GET /health responded 200 in 15ms
+2025-09-02 18:32:43.834 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 24.024ms
+2025-09-02 18:33:13.939 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:33:13.942 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:33:13.945 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:33:13.974 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:33:13.978 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:33:13.985 +00:00 [INF] Response: GET /health responded 200 in 43ms
+2025-09-02 18:33:13.989 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 49.5792ms
+2025-09-02 18:33:44.084 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:33:44.111 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:33:44.135 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:33:44.176 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:33:44.187 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:33:44.197 +00:00 [INF] Response: GET /health responded 200 in 85ms
+2025-09-02 18:33:44.202 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 118.791ms
+2025-09-02 18:34:14.274 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:34:14.276 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:34:14.280 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:34:14.288 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:34:14.290 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:34:14.292 +00:00 [INF] Response: GET /health responded 200 in 16ms
+2025-09-02 18:34:14.295 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 21.4828ms
+2025-09-02 18:34:44.384 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:34:44.387 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:34:44.392 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:34:44.396 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:34:44.399 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:34:44.404 +00:00 [INF] Response: GET /health responded 200 in 16ms
+2025-09-02 18:34:44.408 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 23.8321ms
+2025-09-02 18:35:14.486 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:35:14.489 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:35:14.492 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:35:14.498 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:35:14.502 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:35:14.505 +00:00 [INF] Response: GET /health responded 200 in 16ms
+2025-09-02 18:35:14.508 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 22.7292ms
+2025-09-02 18:35:44.570 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:35:44.574 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:35:44.576 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:35:44.582 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:35:44.586 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:35:44.590 +00:00 [INF] Response: GET /health responded 200 in 15ms
+2025-09-02 18:35:44.593 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 23.0805ms
+2025-09-02 18:36:14.692 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 18:36:14.694 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 18:36:14.699 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 18:36:14.706 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 18:36:14.712 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 18:36:14.718 +00:00 [INF] Response: GET /health responded 200 in 23ms
+2025-09-02 18:36:14.723 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 30.3986ms
+2025-09-02 21:36:43.611 +00:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null
+2025-09-02 21:36:43.613 +00:00 [INF] Request: GET /health from ::ffff:127.0.0.1
+2025-09-02 21:36:43.616 +00:00 [INF] Executing endpoint 'Health checks'
+2025-09-02 21:36:43.627 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-09-02 21:36:43.631 +00:00 [INF] Executed endpoint 'Health checks'
+2025-09-02 21:36:43.636 +00:00 [INF] Response: GET /health responded 200 in 22ms
+2025-09-02 21:36:43.640 +00:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 29.1768ms
+OrderManagement.API.Middleware.RequestLoggingMiddleware>
 [2025-09-02 17:18:24.109 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.0623ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
 [2025-09-02 17:18:54.207 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
 [2025-09-02 17:18:54.210 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
@@ -4620,3 +4665,227 @@ SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
 [2025-09-02 18:22:39.620 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
 [2025-09-02 18:22:39.623 +00:00 INF] Response: GET /health responded 200 in 15ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
 [2025-09-02 18:22:39.626 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 20.6072ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:23:09.691 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:23:09.693 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:23:09.698 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:23:09.703 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:23:09.705 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:23:09.709 +00:00 INF] Response: GET /health responded 200 in 15ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:23:09.712 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 21.3136ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:23:39.797 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:23:39.801 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:23:39.803 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:23:39.809 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:23:39.812 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:23:39.814 +00:00 INF] Response: GET /health responded 200 in 12ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:23:39.817 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.7632ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:24:09.891 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:24:09.895 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:24:09.898 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:24:09.903 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:24:09.906 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:24:09.908 +00:00 INF] Response: GET /health responded 200 in 13ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:24:09.911 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.8634ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:24:39.987 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:24:39.990 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:24:39.995 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:24:40.001 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:24:40.003 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:24:40.005 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:24:40.010 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 22.6569ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:25:10.078 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:25:10.084 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:25:10.090 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:25:10.096 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:25:10.101 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:25:10.103 +00:00 INF] Response: GET /health responded 200 in 18ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:25:10.105 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 27.0558ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:25:40.182 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:25:40.185 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:25:40.188 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:25:40.192 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:25:40.197 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:25:40.199 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:25:40.203 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 20.2858ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:26:10.291 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:26:10.294 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:26:10.296 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:26:10.301 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:26:10.304 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:26:10.306 +00:00 INF] Response: GET /health responded 200 in 11ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:26:10.308 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 17.0631ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:26:40.390 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:26:40.398 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:26:40.402 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:26:40.407 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:26:40.410 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:26:40.413 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:26:40.417 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 26.6122ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:27:10.490 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:27:10.492 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:27:10.496 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:27:10.501 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:27:10.505 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:27:10.507 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:27:10.509 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.1722ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:27:40.586 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:27:40.588 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:27:40.592 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:27:40.598 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:27:40.603 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:27:40.610 +00:00 INF] Response: GET /health responded 200 in 21ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:27:40.613 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 26.3099ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:28:10.676 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:28:10.681 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:28:10.684 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:28:10.689 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:28:10.692 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:28:10.696 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:28:10.698 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 22.5018ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:28:40.763 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:28:40.767 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:28:40.770 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:28:40.776 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:28:40.780 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:28:40.783 +00:00 INF] Response: GET /health responded 200 in 15ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:28:40.788 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 24.8777ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:29:10.882 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:29:10.885 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:29:10.887 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:29:10.891 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:29:10.896 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:29:10.905 +00:00 INF] Response: GET /health responded 200 in 20ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:29:10.910 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 27.5823ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:29:40.978 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:29:40.981 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:29:40.982 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:29:40.987 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:29:40.990 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:29:40.992 +00:00 INF] Response: GET /health responded 200 in 11ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:29:40.996 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 18.2982ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:30:11.093 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:30:11.532 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:30:11.932 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:30:12.254 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:30:12.600 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:30:12.993 +00:00 INF] Response: GET /health responded 200 in 1461ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:30:13.181 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 2087.6833ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:30:43.282 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:30:43.326 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:30:43.343 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:30:43.375 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:30:43.390 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:30:43.396 +00:00 INF] Response: GET /health responded 200 in 69ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:30:43.403 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 121.2591ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:31:13.472 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:31:13.476 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:31:13.479 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:31:13.484 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:31:13.486 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:31:13.488 +00:00 INF] Response: GET /health responded 200 in 11ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:31:13.490 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 17.7079ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:31:43.570 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:31:43.574 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:31:43.577 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:31:43.582 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:31:43.584 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:31:43.589 +00:00 INF] Response: GET /health responded 200 in 14ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:31:43.591 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 21.0229ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:32:13.660 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:32:13.664 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:32:13.666 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:32:13.673 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:32:13.675 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:32:13.677 +00:00 INF] Response: GET /health responded 200 in 13ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:32:13.680 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 19.7972ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:32:43.810 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:32:43.817 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:32:43.820 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:32:43.826 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:32:43.829 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:32:43.832 +00:00 INF] Response: GET /health responded 200 in 15ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:32:43.834 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 24.024ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:33:13.939 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:33:13.942 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:33:13.945 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:33:13.974 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:33:13.978 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:33:13.985 +00:00 INF] Response: GET /health responded 200 in 43ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:33:13.989 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 49.5792ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:33:44.084 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:33:44.111 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:33:44.135 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:33:44.176 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:33:44.187 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:33:44.197 +00:00 INF] Response: GET /health responded 200 in 85ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:33:44.202 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 118.791ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:34:14.274 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:34:14.276 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:34:14.280 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:34:14.288 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:34:14.290 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:34:14.292 +00:00 INF] Response: GET /health responded 200 in 16ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:34:14.295 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 21.4828ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:34:44.384 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:34:44.387 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:34:44.392 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:34:44.396 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:34:44.399 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:34:44.404 +00:00 INF] Response: GET /health responded 200 in 16ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:34:44.408 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 23.8321ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:35:14.486 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:35:14.489 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:35:14.492 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:35:14.498 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:35:14.502 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:35:14.505 +00:00 INF] Response: GET /health responded 200 in 16ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:35:14.508 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 22.7292ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:35:44.570 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:35:44.574 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:35:44.576 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:35:44.582 +00:00 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:35:44.586 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:35:44.590 +00:00 INF] Response: GET /health responded 200 in 15ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:35:44.593 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 23.0805ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:36:14.692 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 18:36:14.694 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:36:14.699 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:36:14.706 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 18:36:14.712 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 18:36:14.718 +00:00 INF] Response: GET /health responded 200 in 23ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 18:36:14.723 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 30.3986ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 21:36:43.611 +00:00 INF] Request starting HTTP/1.1 GET http://localhost:8080/health - null null <s:Microsoft.AspNetCore.Hosting.Diagnostics>
+[2025-09-02 21:36:43.613 +00:00 INF] Request: GET /health from ::ffff:127.0.0.1 <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 21:36:43.616 +00:00 INF] Executing endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 21:36:43.627 +00:00 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 <s:Microsoft.EntityFrameworkCore.Database.Command>
+[2025-09-02 21:36:43.631 +00:00 INF] Executed endpoint 'Health checks' <s:Microsoft.AspNetCore.Routing.EndpointMiddleware>
+[2025-09-02 21:36:43.636 +00:00 INF] Response: GET /health responded 200 in 22ms <s:OrderManagement.API.Middleware.RequestLoggingMiddleware>
+[2025-09-02 21:36:43.640 +00:00 INF] Request finished HTTP/1.1 GET http://localhost:8080/health - 200 null text/plain 29.1768ms <s:Microsoft.AspNetCore.Hosting.Diagnostics>

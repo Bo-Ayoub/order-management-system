@@ -6,6 +6,7 @@ C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\o
 C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.AssemblyInfoInputs.cache
 C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.AssemblyInfo.cs
 C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.sourcelink.json
 C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.dll
 C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\refint\OrderManagement.Domain.dll
 C:\Users\ayoub\OneDrive\Bureau\Hahn\OrderManagement\src\OrderManagement.Domain\obj\Debug\net9.0\OrderManagement.Domain.pdb
