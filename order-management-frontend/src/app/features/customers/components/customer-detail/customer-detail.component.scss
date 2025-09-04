@@ -1,0 +1,163 @@
+// Custom styles for customer detail component
+// Most styling is handled by Tailwind classes in the template
+
+.customer-detail-container {
+  @apply bg-white shadow-sm rounded-lg overflow-hidden;
+}
+
+.customer-header {
+  @apply flex items-start justify-between mb-6;
+
+  .customer-info {
+    @apply flex items-center space-x-4;
+
+    .avatar {
+      @apply flex-shrink-0;
+
+      .avatar-circle {
+        @apply h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center;
+
+        span {
+          @apply text-xl font-semibold text-blue-600;
+        }
+      }
+    }
+
+    .customer-details {
+      h1 {
+        @apply text-2xl font-bold text-gray-900;
+      }
+
+      p {
+        @apply text-sm text-gray-500;
+      }
+    }
+  }
+
+  .action-buttons {
+    @apply flex items-center space-x-3;
+  }
+}
+
+.details-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.info-card {
+  @apply bg-gray-50 rounded-lg p-6;
+
+  h3 {
+    @apply text-lg font-medium text-gray-900 mb-4 flex items-center;
+
+    svg {
+      @apply h-5 w-5 mr-2 text-gray-400;
+    }
+  }
+
+  .info-list {
+    @apply space-y-3;
+
+    .info-item {
+      dt {
+        @apply text-sm font-medium text-gray-500;
+      }
+
+      dd {
+        @apply mt-1;
+
+        a {
+          @apply text-sm text-blue-600 hover:text-blue-500 hover:underline;
+        }
+
+        span {
+          @apply text-sm text-gray-400;
+        }
+      }
+    }
+  }
+}
+
+.additional-info {
+  @apply mt-6 bg-gray-50 rounded-lg p-6;
+
+  h3 {
+    @apply text-lg font-medium text-gray-900 mb-4 flex items-center;
+
+    svg {
+      @apply h-5 w-5 mr-2 text-gray-400;
+    }
+  }
+
+  .stats-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+
+    .stat-card {
+      @apply text-center p-4 bg-white rounded-lg;
+
+      .stat-value {
+        @apply text-2xl font-bold;
+
+        &.blue {
+          @apply text-blue-600;
+        }
+
+        &.green {
+          @apply text-green-600;
+        }
+
+        &.purple {
+          @apply text-purple-600;
+        }
+      }
+
+      .stat-label {
+        @apply text-sm text-gray-500;
+      }
+    }
+  }
+}
+
+// Loading state
+.loading-container {
+  @apply flex justify-center items-center py-12;
+
+  .loading-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
+  }
+}
+
+// Error state
+.error-container {
+  @apply text-center py-12;
+
+  svg {
+    @apply mx-auto h-12 w-12 text-gray-400;
+  }
+
+  h3 {
+    @apply mt-2 text-sm font-medium text-gray-900;
+  }
+
+  p {
+    @apply mt-1 text-sm text-gray-500;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .customer-header {
+    @apply flex-col space-y-4;
+
+    .action-buttons {
+      @apply w-full justify-center;
+    }
+  }
+
+  .details-grid {
+    @apply grid-cols-1;
+  }
+
+  .stats-grid {
+    @apply grid-cols-1;
+  }
+}

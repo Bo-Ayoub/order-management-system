@@ -1,0 +1,147 @@
+// Custom styles for header component
+// Most styling is handled by Tailwind classes in the template
+
+.header {
+  @apply bg-white shadow-sm border-b border-gray-200;
+  
+  .header-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .header-content {
+    @apply flex justify-between items-center h-16;
+  }
+  
+  .logo-section {
+    @apply flex items-center;
+    
+    .logo-link {
+      @apply flex items-center space-x-2;
+      
+      .logo-icon {
+        @apply h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center;
+        
+        svg {
+          @apply h-5 w-5 text-white;
+        }
+      }
+      
+      .logo-text {
+        @apply text-xl font-bold text-gray-900;
+      }
+    }
+  }
+  
+  .desktop-nav {
+    @apply hidden md:flex space-x-8;
+    
+    .nav-link {
+      @apply px-3 py-2 text-sm font-medium transition-colors duration-200;
+      
+      &.active {
+        @apply text-blue-600 border-b-2 border-blue-600;
+      }
+      
+      &.inactive {
+        @apply text-gray-500 hover:text-gray-700;
+      }
+      
+      svg {
+        @apply h-4 w-4 mr-2 inline;
+      }
+    }
+  }
+  
+  .user-section {
+    @apply hidden md:flex items-center space-x-4;
+    
+    .notification-button {
+      @apply p-2 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md;
+      
+      svg {
+        @apply h-5 w-5;
+      }
+    }
+    
+    .user-profile {
+      @apply flex items-center space-x-2;
+      
+      .user-avatar {
+        @apply h-8 w-8 bg-gray-300 rounded-full flex items-center justify-center;
+        
+        svg {
+          @apply h-5 w-5 text-gray-600;
+        }
+      }
+      
+      .user-name {
+        @apply text-sm font-medium text-gray-700;
+      }
+    }
+  }
+  
+  .mobile-menu-button {
+    @apply md:hidden;
+    
+    button {
+      @apply p-2 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md;
+      
+      svg {
+        @apply h-6 w-6;
+      }
+    }
+  }
+  
+  .mobile-nav {
+    @apply md:hidden border-t border-gray-200;
+    
+    .mobile-nav-content {
+      @apply px-2 pt-2 pb-3 space-y-1;
+      
+      .mobile-nav-link {
+        @apply block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200;
+        
+        &.active {
+          @apply bg-blue-50 text-blue-600;
+        }
+        
+        &.inactive {
+          @apply text-gray-500 hover:text-gray-700 hover:bg-gray-50;
+        }
+        
+        svg {
+          @apply h-4 w-4 mr-2 inline;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .header {
+    .desktop-nav {
+      @apply hidden;
+    }
+    
+    .user-section {
+      @apply hidden;
+    }
+  }
+}
+
+// Animation for mobile menu
+.mobile-nav {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

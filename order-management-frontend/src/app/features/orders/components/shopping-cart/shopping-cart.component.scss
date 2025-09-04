@@ -1,0 +1,233 @@
+// Custom styles for shopping cart component
+// Most styling is handled by Tailwind classes in the template
+
+.shopping-cart {
+  @apply bg-white rounded-lg shadow-sm;
+  
+  &.compact {
+    @apply p-4;
+  }
+  
+  &:not(.compact) {
+    @apply p-6;
+  }
+  
+  .cart-header {
+    @apply mb-6;
+    
+    .header-content {
+      @apply flex items-center justify-between;
+      
+      h2 {
+        @apply text-lg font-medium text-gray-900;
+      }
+      
+      .header-actions {
+        @apply flex items-center space-x-2;
+        
+        .item-count {
+          @apply text-sm text-gray-500;
+        }
+        
+        .clear-button {
+          @apply text-sm text-red-600 hover:text-red-800 disabled:opacity-50 disabled:cursor-not-allowed;
+        }
+      }
+    }
+  }
+  
+  .empty-cart {
+    @apply text-center py-8;
+    
+    .empty-icon {
+      @apply mx-auto h-12 w-12 text-gray-400;
+    }
+    
+    .empty-title {
+      @apply mt-2 text-sm font-medium text-gray-900;
+    }
+    
+    .empty-description {
+      @apply mt-1 text-sm text-gray-500;
+    }
+    
+    .empty-action {
+      @apply mt-6;
+      
+      .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+        
+        svg {
+          @apply h-4 w-4 mr-2;
+        }
+      }
+    }
+  }
+  
+  .cart-items {
+    @apply space-y-4;
+    
+    .cart-item {
+      @apply flex items-center space-x-4 p-4 border border-gray-200 rounded-lg;
+      
+      .product-image {
+        @apply flex-shrink-0;
+        
+        .image-container {
+          @apply h-16 w-16 bg-gray-200 rounded-lg flex items-center justify-center;
+          
+          svg {
+            @apply h-8 w-8 text-gray-400;
+          }
+        }
+      }
+      
+      .product-details {
+        @apply flex-1 min-w-0;
+        
+        .product-name {
+          @apply text-sm font-medium text-gray-900 truncate;
+        }
+        
+        .product-description {
+          @apply text-sm text-gray-500 truncate;
+        }
+        
+        .product-status {
+          @apply mt-1 flex items-center space-x-2;
+          
+          .status-badge {
+            @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+            
+            &.out-of-stock {
+              @apply text-red-600 bg-red-100;
+            }
+            
+            &.low-stock {
+              @apply text-yellow-600 bg-yellow-100;
+            }
+            
+            &.in-stock {
+              @apply text-green-600 bg-green-100;
+            }
+          }
+          
+          .unavailable-text {
+            @apply text-xs text-red-600;
+          }
+        }
+      }
+      
+      .quantity-controls {
+        @apply flex items-center space-x-2;
+        
+        .quantity-btn {
+          @apply p-1 rounded-md border border-gray-300 text-gray-400 hover:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed;
+          
+          svg {
+            @apply h-4 w-4;
+          }
+        }
+        
+        .quantity-input {
+          @apply w-16 px-2 py-1 text-center text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
+        }
+      }
+      
+      .price-section {
+        @apply text-right;
+        
+        .subtotal {
+          @apply text-sm font-medium text-gray-900;
+        }
+        
+        .unit-price {
+          @apply text-xs text-gray-500;
+        }
+      }
+      
+      .remove-button {
+        @apply p-1 text-gray-400 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded-md;
+        
+        svg {
+          @apply h-4 w-4;
+        }
+      }
+    }
+  }
+  
+  .cart-summary {
+    @apply border-t border-gray-200 pt-4;
+    
+    .summary-row {
+      @apply flex justify-between items-center text-sm;
+      
+      &.subtotal {
+        .label {
+          @apply text-gray-500;
+        }
+        
+        .value {
+          @apply font-medium text-gray-900;
+        }
+      }
+      
+      &.shipping {
+        .label {
+          @apply text-gray-500;
+        }
+        
+        .value {
+          @apply font-medium text-gray-900;
+        }
+      }
+    }
+    
+    .total-row {
+      @apply mt-4 flex justify-between items-center text-lg font-medium;
+    }
+  }
+  
+  .checkout-section {
+    @apply pt-4;
+    
+    .checkout-button {
+      @apply w-full flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+      
+      svg {
+        @apply h-4 w-4 mr-2;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .shopping-cart {
+    .cart-items {
+      .cart-item {
+        @apply flex-col space-x-0 space-y-3;
+        
+        .product-image {
+          @apply self-start;
+        }
+        
+        .product-details {
+          @apply w-full;
+        }
+        
+        .quantity-controls {
+          @apply w-full justify-center;
+        }
+        
+        .price-section {
+          @apply text-left w-full;
+        }
+        
+        .remove-button {
+          @apply self-end;
+        }
+      }
+    }
+  }
+}

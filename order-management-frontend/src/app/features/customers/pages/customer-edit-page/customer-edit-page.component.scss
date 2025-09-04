@@ -1,0 +1,59 @@
+// Custom styles for customer edit page
+// Most styling is handled by Tailwind classes in the template
+
+.customer-edit-page {
+  @apply min-h-screen bg-gray-50;
+
+  .page-container {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+
+  .page-header {
+    @apply mb-8;
+  }
+
+  .form-container {
+    @apply mt-8;
+
+    .form-card {
+      @apply bg-white shadow-sm rounded-lg p-6;
+    }
+  }
+
+  .loading-container {
+    @apply flex justify-center items-center py-12;
+
+    .loading-spinner {
+      @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
+    }
+  }
+
+  .error-container {
+    @apply text-center py-12;
+
+    svg {
+      @apply mx-auto h-12 w-12 text-gray-400;
+    }
+
+    h3 {
+      @apply mt-2 text-sm font-medium text-gray-900;
+    }
+
+    p {
+      @apply mt-1 text-sm text-gray-500;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .customer-edit-page {
+    .page-container {
+      @apply px-4 py-4;
+    }
+
+    .form-card {
+      @apply p-4;
+    }
+  }
+}

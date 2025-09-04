@@ -1,0 +1,373 @@
+<div *ngIf="order" class="bg-white shadow-sm rounded-lg">
+  <!-- Header -->
+  <div class="px-6 py-4 border-b border-gray-200">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">
+          Order {{ order.orderNumber }}
+        </h1>
+        <p class="mt-1 text-sm text-gray-500">
+          Created on {{ formatDate(order.orderDate) }}
+        </p>
+      </div>
+      <div class="flex items-center space-x-3">
+        <span
+          [class]="
+            'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ' +
+            getStatusClass(order.status)
+          "
+        >
+          {{ order.status }}
+        </span>
+        <div class="flex space-x-2">
+          <button
+            *ngIf="canEdit()"
+            (click)="onEdit()"
+            class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            <svg
+              class="h-4 w-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              ></path>
+            </svg>
+            Edit
+          </button>
+          <button
+            *ngIf="canDelete()"
+            (click)="onDelete()"
+            class="inline-flex items-center px-3 py-2 border border-red-300 shadow-sm text-sm leading-4 font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
+            <svg
+              class="h-4 w-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              ></path>
+            </svg>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Information -->
+  <div class="px-6 py-4">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <!-- Customer Information -->
+      <div>
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+          Customer Information
+        </h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <dt class="text-sm font-medium text-gray-500">Customer Name</dt>
+              <dd class="mt-1 text-sm text-gray-900">
+                {{ order.customerName }}
+              </dd>
+            </div>
+            <div>
+              <dt class="text-sm font-medium text-gray-500">Customer ID</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ order.customerId }}</dd>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div>
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Order Summary</h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+          <div class="space-y-3">
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Total Items</span>
+              <span class="text-sm font-medium text-gray-900">{{
+                order.totalItems
+              }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Total Amount</span>
+              <span class="text-sm font-medium text-gray-900">
+                {{ formatPrice(order.totalAmount, order.currency) }}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm text-gray-500">Status</span>
+              <span
+                [class]="
+                  'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ' +
+                  getStatusClass(order.status)
+                "
+              >
+                {{ order.status }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shipping Information -->
+    <div *ngIf="order.shippingAddress" class="mt-6">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">
+        Shipping Information
+      </h3>
+      <div class="bg-gray-50 rounded-lg p-4">
+        <p class="text-sm text-gray-900 whitespace-pre-line">
+          {{ order.shippingAddress }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div *ngIf="order.notes" class="mt-6">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Notes</h3>
+      <div class="bg-gray-50 rounded-lg p-4">
+        <p class="text-sm text-gray-900 whitespace-pre-line">
+          {{ order.notes }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="mt-6">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Order Items</h3>
+      <div
+        class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg"
+      >
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Product
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Quantity
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Unit Price
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Total
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr *ngFor="let item of order.orderItems">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900">
+                  {{ item.productName }}
+                </div>
+                <div class="text-sm text-gray-500">
+                  ID: {{ item.productId }}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {{ item.quantity }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {{ formatPrice(item.unitPrice, item.currency) }}
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+              >
+                {{ formatPrice(item.totalPrice, item.currency) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Status Update -->
+    <div *ngIf="canUpdateStatus()" class="mt-6">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Update Status</h3>
+      <div class="flex items-center space-x-4">
+        <select
+          [value]="order?.status"
+          (change)="onStatusUpdate($event)"
+          class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        >
+          <option *ngFor="let status of orderStatuses" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+        <p class="text-sm text-gray-500">Select a new status for this order</p>
+      </div>
+    </div>
+
+    <!-- Order Timeline -->
+    <div class="mt-8">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Order Timeline</h3>
+      <div class="flow-root">
+        <ul class="-mb-8">
+          <li>
+            <div class="relative pb-8">
+              <div class="relative flex space-x-3">
+                <div>
+                  <span
+                    class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white"
+                  >
+                    <svg
+                      class="h-5 w-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </span>
+                </div>
+                <div
+                  class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4"
+                >
+                  <div>
+                    <p class="text-sm text-gray-500">Order created</p>
+                  </div>
+                  <div
+                    class="text-right text-sm whitespace-nowrap text-gray-500"
+                  >
+                    {{ formatDate(order.orderDate) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li *ngIf="order.shippedDate">
+            <div class="relative pb-8">
+              <div class="relative flex space-x-3">
+                <div>
+                  <span
+                    class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white"
+                  >
+                    <svg
+                      class="h-5 w-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </span>
+                </div>
+                <div
+                  class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4"
+                >
+                  <div>
+                    <p class="text-sm text-gray-500">Order shipped</p>
+                  </div>
+                  <div
+                    class="text-right text-sm whitespace-nowrap text-gray-500"
+                  >
+                    {{ formatDate(order.shippedDate) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li *ngIf="order.deliveredDate">
+            <div class="relative">
+              <div class="relative flex space-x-3">
+                <div>
+                  <span
+                    class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white"
+                  >
+                    <svg
+                      class="h-5 w-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </span>
+                </div>
+                <div
+                  class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4"
+                >
+                  <div>
+                    <p class="text-sm text-gray-500">Order delivered</p>
+                  </div>
+                  <div
+                    class="text-right text-sm whitespace-nowrap text-gray-500"
+                  >
+                    {{ formatDate(order.deliveredDate) }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="flex justify-center items-center py-12">
+  <div
+    class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"
+  ></div>
+</div>
+
+<!-- Empty State -->
+<div *ngIf="!order && !loading" class="text-center py-12">
+  <svg
+    class="mx-auto h-12 w-12 text-gray-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+    ></path>
+  </svg>
+  <h3 class="mt-2 text-sm font-medium text-gray-900">No order found</h3>
+  <p class="mt-1 text-sm text-gray-500">
+    The order you're looking for doesn't exist.
+  </p>
+</div>

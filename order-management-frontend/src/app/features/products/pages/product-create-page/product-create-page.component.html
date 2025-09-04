@@ -1,0 +1,33 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <div class="flex items-center">
+        <a
+          routerLink="/products"
+          class="mr-4 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
+        >
+          <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Back to Products
+        </a>
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900 mt-2">Create Product</h1>
+      <p class="mt-2 text-sm text-gray-600">Add a new product to your catalog</p>
+    </div>
+
+    <!-- Product Form -->
+    <div class="mt-8">
+      <div class="bg-white shadow-sm rounded-lg p-6">
+        <app-product-form
+          [loading]="loading"
+          [isEditMode]="false"
+          [categories]="categories"
+          (formSubmit)="onFormSubmit($event)"
+          (formCancel)="onFormCancel()"
+        ></app-product-form>
+      </div>
+    </div>
+  </div>
+</div>

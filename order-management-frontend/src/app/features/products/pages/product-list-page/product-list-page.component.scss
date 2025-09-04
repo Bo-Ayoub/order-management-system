@@ -1,0 +1,27 @@
+// Custom styles for product list page
+// Most styling is handled by Tailwind classes in the template
+
+.product-list-page {
+  @apply min-h-screen bg-gray-50;
+  
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .page-header {
+    @apply mb-8;
+  }
+  
+  .product-list-container {
+    @apply mt-8;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .product-list-page {
+    .page-container {
+      @apply px-4 py-4;
+    }
+  }
+}

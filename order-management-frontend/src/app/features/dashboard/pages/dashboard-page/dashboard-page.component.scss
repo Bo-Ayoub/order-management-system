@@ -1,0 +1,169 @@
+// Custom styles for dashboard page
+// Most styling is handled by Tailwind classes in the template
+
+.dashboard-page {
+  @apply min-h-screen bg-gray-50;
+  
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .page-header {
+    @apply mb-8;
+    
+    h1 {
+      @apply text-3xl font-bold text-gray-900;
+    }
+    
+    p {
+      @apply mt-2 text-sm text-gray-600;
+    }
+  }
+  
+  .stats-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8;
+    
+    .stat-card {
+      @apply bg-white rounded-lg shadow-sm p-6 border border-gray-200;
+      
+      .stat-content {
+        @apply flex items-center;
+        
+        .stat-icon {
+          @apply p-3 rounded-lg;
+          
+          svg {
+            @apply h-6 w-6;
+          }
+        }
+        
+        .stat-info {
+          @apply ml-4;
+          
+          .stat-title {
+            @apply text-sm font-medium text-gray-500;
+          }
+          
+          .stat-value {
+            @apply text-2xl font-semibold text-gray-900;
+          }
+        }
+      }
+      
+      .stat-change {
+        @apply mt-4;
+        
+        .change-badge {
+          @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+          
+          &.positive {
+            @apply bg-green-100 text-green-800;
+          }
+          
+          &.negative {
+            @apply bg-red-100 text-red-800;
+          }
+          
+          svg {
+            @apply h-3 w-3 mr-1;
+          }
+        }
+      }
+    }
+  }
+  
+  .content-grid {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8;
+    
+    .content-card {
+      @apply bg-white rounded-lg shadow-sm p-6 border border-gray-200;
+      
+      h3 {
+        @apply text-lg font-medium text-gray-900 mb-4;
+      }
+    }
+  }
+  
+  .quick-actions {
+    .actions-grid {
+      @apply grid grid-cols-2 gap-4;
+      
+      .action-link {
+        @apply flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200;
+        
+        .action-icon {
+          @apply p-2 rounded-lg;
+          
+          svg {
+            @apply h-5 w-5;
+          }
+        }
+        
+        .action-info {
+          @apply ml-3;
+          
+          .action-title {
+            @apply text-sm font-medium text-gray-900;
+          }
+          
+          .action-description {
+            @apply text-xs text-gray-500;
+          }
+        }
+      }
+    }
+  }
+  
+  .recent-activity {
+    .activity-list {
+      @apply space-y-4;
+      
+      .activity-item {
+        @apply flex items-start;
+        
+        .activity-icon {
+          @apply flex-shrink-0;
+          
+          .icon-container {
+            @apply h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center;
+            
+            svg {
+              @apply h-4 w-4 text-gray-600;
+            }
+          }
+        }
+        
+        .activity-content {
+          @apply ml-3;
+          
+          .activity-action {
+            @apply text-sm text-gray-900;
+          }
+          
+          .activity-meta {
+            @apply text-xs text-gray-500;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .dashboard-page {
+    .stats-grid {
+      @apply grid-cols-1;
+    }
+    
+    .content-grid {
+      @apply grid-cols-1;
+    }
+    
+    .quick-actions {
+      .actions-grid {
+        @apply grid-cols-1;
+      }
+    }
+  }
+}

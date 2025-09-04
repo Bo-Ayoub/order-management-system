@@ -1,0 +1,149 @@
+// Custom styles for sidebar component
+// Most styling is handled by Tailwind classes in the template
+
+.sidebar {
+  @apply bg-gray-800 text-white transition-all duration-300;
+  
+  &.collapsed {
+    @apply w-16;
+  }
+  
+  &.expanded {
+    @apply w-64;
+  }
+  
+  .sidebar-header {
+    @apply p-4 border-b border-gray-700;
+    
+    .header-content {
+      @apply flex items-center justify-between;
+      
+      .logo-section {
+        @apply flex items-center space-x-2;
+        
+        .logo-icon {
+          @apply h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center;
+          
+          svg {
+            @apply h-5 w-5 text-white;
+          }
+        }
+        
+        .logo-text {
+          @apply text-lg font-semibold;
+        }
+      }
+      
+      .toggle-button {
+        @apply p-1 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500;
+        
+        svg {
+          @apply h-5 w-5;
+        }
+      }
+    }
+  }
+  
+  .sidebar-nav {
+    @apply mt-4;
+    
+    .nav-list {
+      @apply space-y-1 px-2;
+      
+      .nav-item {
+        .nav-link {
+          @apply flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer transition-colors duration-200;
+          
+          &.active {
+            @apply bg-blue-600 text-white;
+          }
+          
+          &.inactive {
+            @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+          }
+          
+          svg {
+            @apply h-5 w-5 mr-3;
+          }
+          
+          .nav-text {
+            // Text will be hidden when sidebar is collapsed
+          }
+        }
+      }
+    }
+  }
+  
+  .sidebar-footer {
+    @apply absolute bottom-0 w-full p-4 border-t border-gray-700;
+    
+    .footer-content {
+      @apply flex items-center space-x-3;
+      
+      .user-avatar {
+        @apply h-8 w-8 bg-gray-300 rounded-full flex items-center justify-center;
+        
+        svg {
+          @apply h-5 w-5 text-gray-600;
+        }
+      }
+      
+      .user-info {
+        .user-name {
+          @apply text-sm font-medium text-white;
+        }
+        
+        .user-email {
+          @apply text-xs text-gray-400;
+        }
+      }
+    }
+    
+    .footer-collapsed {
+      @apply flex justify-center;
+      
+      .user-avatar {
+        @apply h-8 w-8 bg-gray-300 rounded-full flex items-center justify-center;
+        
+        svg {
+          @apply h-5 w-5 text-gray-600;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .sidebar {
+    @apply w-16;
+    
+    .sidebar-header {
+      .header-content {
+        .logo-section {
+          .logo-text {
+            @apply hidden;
+          }
+        }
+      }
+    }
+    
+    .sidebar-nav {
+      .nav-list {
+        .nav-item {
+          .nav-link {
+            .nav-text {
+              @apply hidden;
+            }
+          }
+        }
+      }
+    }
+    
+    .sidebar-footer {
+      .footer-content {
+        @apply hidden;
+      }
+    }
+  }
+}

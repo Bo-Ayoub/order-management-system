@@ -1,0 +1,24 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Orders</h1>
+      <p class="mt-2 text-sm text-gray-600">Manage and track all orders</p>
+    </div>
+
+    <!-- Order List Component -->
+    <app-order-list
+      [orders]="orders"
+      [pagination]="pagination"
+      [loading]="loading"
+      [searchTerm]="searchTerm"
+      [selectedStatus]="selectedStatus"
+      [selectedCustomer]="selectedCustomer"
+      (searchChange)="onSearchChange($event)"
+      (statusChange)="onStatusChange($event)"
+      (customerChange)="onCustomerChange($event)"
+      (pageChange)="onPageChange($event)"
+      (refresh)="onRefresh()"
+    ></app-order-list>
+  </div>
+</div>

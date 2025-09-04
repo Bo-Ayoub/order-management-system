@@ -1,0 +1,35 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Products</h1>
+      <p class="mt-2 text-sm text-gray-600">Manage your product catalog</p>
+      <button
+        (click)="onCreateProduct()"
+        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      >
+        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        </svg>
+        Add Product
+      </button>
+    </div>
+
+    <!-- Product List Component -->
+    <div class="mt-8">
+      <app-product-list
+        [products]="products"
+        [pagination]="pagination"
+        [loading]="loading"
+        [searchTerm]="searchTerm"
+        [selectedCategory]="selectedCategory"
+        [categories]="categories"
+        (searchChange)="onSearchChange($event)"
+        (categoryChange)="onCategoryChange($event)"
+        (pageChange)="onPageChange($event)"
+        (deleteProduct)="onDeleteProduct($event)"
+        (refresh)="onRefresh()"
+      ></app-product-list>
+    </div>
+  </div>
+</div>

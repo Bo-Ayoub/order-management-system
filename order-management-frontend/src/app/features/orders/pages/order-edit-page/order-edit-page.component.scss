@@ -1,0 +1,47 @@
+// Custom styles for order edit page
+// Most styling is handled by Tailwind classes in the template
+
+.order-edit-page {
+  @apply min-h-screen bg-gray-50;
+  
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .page-header {
+    @apply mb-8;
+    
+    h1 {
+      @apply text-3xl font-bold text-gray-900;
+    }
+    
+    p {
+      @apply mt-2 text-sm text-gray-600;
+    }
+  }
+  
+  .loading-state {
+    @apply flex justify-center items-center py-12;
+    
+    .spinner {
+      @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
+    }
+  }
+  
+  .form-container {
+    @apply max-w-4xl mx-auto;
+    
+    .form-card {
+      @apply bg-white shadow-sm rounded-lg p-6;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .order-edit-page {
+    .page-container {
+      @apply px-2 py-4;
+    }
+  }
+}

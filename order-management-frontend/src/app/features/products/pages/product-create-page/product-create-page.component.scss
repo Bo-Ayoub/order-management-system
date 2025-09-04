@@ -1,0 +1,35 @@
+// Custom styles for product create page
+// Most styling is handled by Tailwind classes in the template
+
+.product-create-page {
+  @apply min-h-screen bg-gray-50;
+  
+  .page-container {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .page-header {
+    @apply mb-8;
+  }
+  
+  .form-container {
+    @apply mt-8;
+    
+    .form-card {
+      @apply bg-white shadow-sm rounded-lg p-6;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .product-create-page {
+    .page-container {
+      @apply px-4 py-4;
+    }
+    
+    .form-card {
+      @apply p-4;
+    }
+  }
+}

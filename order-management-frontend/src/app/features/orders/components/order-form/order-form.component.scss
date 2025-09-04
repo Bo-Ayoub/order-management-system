@@ -1,0 +1,257 @@
+// Custom styles for order form component
+// Most styling is handled by Tailwind classes in the template
+
+.order-form {
+  @apply space-y-6;
+  
+  .form-section {
+    @apply grid grid-cols-1 gap-6 sm:grid-cols-2;
+    
+    .form-field {
+      .field-label {
+        @apply block text-sm font-medium text-gray-700;
+        
+        .required {
+          @apply text-red-500;
+        }
+      }
+      
+      .field-input {
+        @apply block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+        
+        &.error {
+          @apply border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500;
+        }
+        
+        &.normal {
+          @apply border-gray-300;
+        }
+      }
+      
+      .field-textarea {
+        @apply block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+        
+        &.error {
+          @apply border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500;
+        }
+        
+        &.normal {
+          @apply border-gray-300;
+        }
+      }
+      
+      .field-error {
+        @apply mt-1 text-sm text-red-600;
+      }
+    }
+  }
+  
+  .order-items {
+    .items-header {
+      @apply flex items-center justify-between mb-4;
+      
+      h3 {
+        @apply text-lg font-medium text-gray-900;
+      }
+      
+      .header-actions {
+        @apply flex space-x-2;
+        
+        .btn {
+          @apply inline-flex items-center px-3 py-2 border text-sm leading-4 font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+          
+          &.btn-secondary {
+            @apply border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-gray-50;
+          }
+          
+          &.btn-primary {
+            @apply border-transparent shadow-sm text-white bg-blue-600 hover:bg-blue-700;
+          }
+          
+          svg {
+            @apply h-4 w-4 mr-2;
+          }
+        }
+      }
+    }
+    
+    .items-list {
+      @apply space-y-4;
+      
+      .item-form {
+        @apply p-4 border border-gray-200 rounded-lg;
+        
+        .item-grid {
+          @apply grid grid-cols-1 gap-4 sm:grid-cols-3;
+          
+          .product-field {
+            .field-label {
+              @apply block text-sm font-medium text-gray-700;
+              
+              .required {
+                @apply text-red-500;
+              }
+            }
+            
+            .field-select {
+              @apply block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+              
+              &.error {
+                @apply border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500;
+              }
+              
+              &.normal {
+                @apply border-gray-300;
+              }
+            }
+            
+            .field-error {
+              @apply mt-1 text-sm text-red-600;
+            }
+          }
+          
+          .quantity-field {
+            .field-label {
+              @apply block text-sm font-medium text-gray-700;
+              
+              .required {
+                @apply text-red-500;
+              }
+            }
+            
+            .field-input {
+              @apply block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+              
+              &.error {
+                @apply border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500;
+              }
+              
+              &.normal {
+                @apply border-gray-300;
+              }
+            }
+            
+            .field-error {
+              @apply mt-1 text-sm text-red-600;
+            }
+          }
+          
+          .total-field {
+            @apply flex items-end;
+            
+            .total-container {
+              @apply w-full;
+              
+              .total-label {
+                @apply block text-sm font-medium text-gray-700;
+              }
+              
+              .total-display {
+                @apply mt-1 p-2 bg-gray-50 rounded-md text-sm font-medium text-gray-900;
+              }
+            }
+            
+            .remove-button {
+              @apply ml-2 p-2 text-red-600 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded-md;
+              
+              svg {
+                @apply h-4 w-4;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .empty-items {
+      @apply text-center py-8 border-2 border-dashed border-gray-300 rounded-lg;
+      
+      .empty-icon {
+        @apply mx-auto h-12 w-12 text-gray-400;
+      }
+      
+      .empty-title {
+        @apply mt-2 text-sm font-medium text-gray-900;
+      }
+      
+      .empty-description {
+        @apply mt-1 text-sm text-gray-500;
+      }
+    }
+  }
+  
+  .order-total {
+    @apply bg-gray-50 p-4 rounded-lg;
+    
+    .total-row {
+      @apply flex justify-between items-center;
+      
+      .total-label {
+        @apply text-lg font-medium text-gray-900;
+      }
+      
+      .total-amount {
+        @apply text-lg font-bold text-gray-900;
+      }
+    }
+  }
+  
+  .form-actions {
+    @apply flex justify-end space-x-3 pt-6 border-t border-gray-200;
+    
+    .btn {
+      @apply inline-flex items-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+      
+      &.btn-secondary {
+        @apply border border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-gray-50;
+      }
+      
+      &.btn-primary {
+        @apply border border-transparent shadow-sm text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed;
+        
+        .loading-spinner {
+          @apply animate-spin -ml-1 mr-2 h-4 w-4 text-white;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .order-form {
+    .form-section {
+      @apply grid-cols-1;
+    }
+    
+    .order-items {
+      .items-header {
+        @apply flex-col space-y-2;
+        
+        .header-actions {
+          @apply w-full justify-center;
+          
+          .btn {
+            @apply flex-1 justify-center;
+          }
+        }
+      }
+      
+      .items-list {
+        .item-form {
+          .item-grid {
+            @apply grid-cols-1;
+          }
+        }
+      }
+    }
+    
+    .form-actions {
+      @apply flex-col space-x-0 space-y-2;
+      
+      .btn {
+        @apply w-full justify-center;
+      }
+    }
+  }
+}

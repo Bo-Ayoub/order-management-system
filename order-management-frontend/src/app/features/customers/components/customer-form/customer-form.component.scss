@@ -1,0 +1,96 @@
+// Custom styles for customer form component
+// Most styling is handled by Tailwind classes in the template
+
+.form-container {
+  @apply max-w-2xl mx-auto;
+}
+
+.form-field {
+  @apply space-y-6;
+}
+
+.field-group {
+  @apply space-y-1;
+
+  label {
+    @apply block text-sm font-medium text-gray-700;
+
+    .required {
+      @apply text-red-500;
+    }
+  }
+
+  .field-help {
+    @apply mt-1 text-sm text-gray-500;
+  }
+}
+
+.input-field {
+  @apply block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors duration-200;
+
+  &.invalid {
+    @apply border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500;
+  }
+
+  &.valid {
+    @apply border-green-300 text-green-900 placeholder-green-300 focus:ring-green-500 focus:border-green-500;
+  }
+
+  &.default {
+    @apply border-gray-300 text-gray-900 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500;
+  }
+}
+
+.error-message {
+  @apply mt-1 text-sm text-red-600;
+}
+
+.success-message {
+  @apply mt-1 text-sm text-green-600;
+}
+
+.form-actions {
+  @apply flex items-center justify-end space-x-3 pt-6 border-t border-gray-200;
+}
+
+.action-button {
+  @apply inline-flex items-center px-4 py-2 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+
+  &.primary {
+    @apply border-transparent text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  &.secondary {
+    @apply border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+}
+
+.loading-spinner {
+  @apply animate-spin -ml-1 mr-2 h-4 w-4 text-white;
+}
+
+// Form validation states
+.form-field {
+  &.has-error {
+    .input-field {
+      @apply border-red-300 focus:ring-red-500 focus:border-red-500;
+    }
+  }
+
+  &.has-success {
+    .input-field {
+      @apply border-green-300 focus:ring-green-500 focus:border-green-500;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .form-actions {
+    @apply flex-col space-x-0 space-y-3;
+
+    .action-button {
+      @apply w-full justify-center;
+    }
+  }
+}

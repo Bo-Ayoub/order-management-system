@@ -1,0 +1,123 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
+      <p class="mt-2 text-sm text-gray-600">Welcome to your order management system</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div *ngFor="let stat of stats" class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+        <div class="flex items-center">
+          <div [class]="'p-3 rounded-lg bg-' + stat.color + '-100'">
+            <svg class="h-6 w-6" [class]="'text-' + stat.color + '-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="getIconPath(stat.icon)"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-500">{{ stat.title }}</p>
+            <p class="text-2xl font-semibold text-gray-900">{{ stat.value }}</p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <span [class]="'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ' + (stat.changeType === 'positive' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800')">
+            <svg class="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            {{ stat.change }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <!-- Quick Actions Card -->
+      <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Quick Actions</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <a
+            routerLink="/customers/create"
+            class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            <div class="p-2 bg-blue-100 rounded-lg">
+              <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-900">Add Customer</p>
+              <p class="text-xs text-gray-500">Create new customer</p>
+            </div>
+          </a>
+
+          <a
+            routerLink="/products/create"
+            class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            <div class="p-2 bg-green-100 rounded-lg">
+              <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-900">Add Product</p>
+              <p class="text-xs text-gray-500">Create new product</p>
+            </div>
+          </a>
+
+          <a
+            routerLink="/customers"
+            class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            <div class="p-2 bg-purple-100 rounded-lg">
+              <svg class="h-5 w-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-900">View Customers</p>
+              <p class="text-xs text-gray-500">Manage customers</p>
+            </div>
+          </a>
+
+          <a
+            routerLink="/products"
+            class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            <div class="p-2 bg-yellow-100 rounded-lg">
+              <svg class="h-5 w-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-900">View Products</p>
+              <p class="text-xs text-gray-500">Manage products</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Recent Activity</h3>
+        <div class="space-y-4">
+          <div *ngFor="let activity of recentActivities" class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center">
+                <svg class="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-gray-900">{{ activity.action }}</p>
+              <p class="text-xs text-gray-500">{{ activity.user }} • {{ activity.time }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

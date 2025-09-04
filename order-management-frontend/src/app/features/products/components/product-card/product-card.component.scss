@@ -1,0 +1,141 @@
+// Custom styles for product card component
+// Most styling is handled by Tailwind classes in the template
+
+.product-card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200;
+}
+
+.product-image {
+  @apply p-4 pb-0;
+  
+  .image-container {
+    @apply flex items-center justify-center h-32 bg-gray-100 rounded-lg;
+    
+    svg {
+      @apply h-12 w-12 text-gray-400;
+    }
+  }
+}
+
+.product-info {
+  @apply p-4;
+  
+  .product-header {
+    @apply mb-2;
+    
+    .product-name {
+      @apply text-lg font-semibold text-gray-900 truncate;
+    }
+    
+    .product-category {
+      @apply text-sm text-gray-500;
+    }
+  }
+  
+  .product-description {
+    @apply text-sm text-gray-600 mb-3 line-clamp-2;
+  }
+  
+  .product-price {
+    @apply mb-3;
+    
+    .price-value {
+      @apply text-2xl font-bold text-gray-900;
+    }
+  }
+  
+  .stock-status {
+    @apply flex items-center justify-between mb-4;
+    
+    .stock-info {
+      @apply flex items-center space-x-2;
+      
+      .stock-label {
+        @apply text-sm text-gray-500;
+      }
+      
+      .stock-value {
+        @apply text-sm font-medium text-gray-900;
+      }
+    }
+    
+    .stock-badge {
+      @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+      
+      &.out-of-stock {
+        @apply text-red-600 bg-red-100;
+      }
+      
+      &.low-stock {
+        @apply text-yellow-600 bg-yellow-100;
+      }
+      
+      &.in-stock {
+        @apply text-green-600 bg-green-100;
+      }
+    }
+  }
+  
+  .status-badge {
+    @apply mb-4;
+    
+    .status {
+      @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+      
+      &.active {
+        @apply text-green-600 bg-green-100;
+      }
+      
+      &.inactive {
+        @apply text-red-600 bg-red-100;
+      }
+    }
+  }
+  
+  .product-actions {
+    @apply flex items-center justify-between;
+    
+    .action-buttons {
+      @apply flex space-x-2;
+      
+      .action-button {
+        @apply inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+        
+        svg {
+          @apply h-3 w-3 mr-1;
+        }
+      }
+    }
+    
+    .delete-button {
+      @apply inline-flex items-center px-3 py-1.5 border border-red-300 shadow-sm text-xs font-medium rounded text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500;
+      
+      svg {
+        @apply h-3 w-3 mr-1;
+      }
+    }
+  }
+}
+
+// Line clamp utility (if not available in Tailwind)
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .product-actions {
+    @apply flex-col space-y-2;
+    
+    .action-buttons {
+      @apply w-full justify-center;
+    }
+    
+    .delete-button {
+      @apply w-full justify-center;
+    }
+  }
+}

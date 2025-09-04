@@ -1,0 +1,26 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Edit Order</h1>
+      <p class="mt-2 text-sm text-gray-600">Modify order details</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="pageLoading" class="flex justify-center items-center py-12">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+    </div>
+
+    <!-- Order Form Component -->
+    <div *ngIf="!pageLoading && order" class="max-w-4xl mx-auto">
+      <div class="bg-white shadow-sm rounded-lg p-6">
+        <app-order-form
+          [order]="getOrderForForm()"
+          [loading]="loading"
+          (save)="onSave($event)"
+          (cancel)="onCancel()"
+        ></app-order-form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="space-y-6">
+  <!-- Customer Selection -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div>
+      <label for="customerId" class="block text-sm font-medium text-gray-700">
+        Customer <span class="text-red-500">*</span>
+      </label>
+      <select
+        id="customerId"
+        formControlName="customerId"
+        [class]="getSelectClasses(orderForm.get('customerId'))"
+      >
+        <option value="">Select a customer</option>
+        <option *ngFor="let customer of filteredCustomers" [value]="customer.id">
+          {{ customer.firstName }} {{ customer.lastName }} ({{ customer.email }})
+        </option>
+      </select>
+      <div *ngIf="orderForm.get('customerId')?.invalid && orderForm.get('customerId')?.touched" class="mt-1 text-sm text-red-600">
+        Customer is required
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Items -->
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-medium text-gray-900">Order Items</h3>
+      <div class="flex space-x-2">
+        <button
+          type="button"
+          (click)="addFromCart()"
+          class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 11-4 0v-6m4 0V9a2 2 0 00-4 0v4.01"></path>
+          </svg>
+          Add from Cart
+        </button>
+        <button
+          type="button"
+          (click)="addOrderItem()"
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          Add Item
+        </button>
+      </div>
+    </div>
+
+    <div formArrayName="items" class="space-y-4">
+      <div
+        *ngFor="let item of itemsArray.controls; let i = index"
+        [formGroupName]="i"
+        class="p-4 border border-gray-200 rounded-lg"
+      >
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <!-- Product Selection -->
+          <div>
+            <label [for]="'productId_' + i" class="block text-sm font-medium text-gray-700">
+              Product <span class="text-red-500">*</span>
+            </label>
+            <select
+              [id]="'productId_' + i"
+              formControlName="productId"
+              [class]="getSelectClasses(item.get('productId'))"
+            >
+              <option value="">Select a product</option>
+              <option *ngFor="let product of filteredProducts" [value]="product.id">
+                {{ product.name }} - {{ formatPrice(product.price, product.currency) }}
+              </option>
+            </select>
+            <div *ngIf="item.get('productId')?.invalid && item.get('productId')?.touched" class="mt-1 text-sm text-red-600">
+              Product is required
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div>
+            <label [for]="'quantity_' + i" class="block text-sm font-medium text-gray-700">
+              Quantity <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="number"
+              [id]="'quantity_' + i"
+              formControlName="quantity"
+              min="1"
+              [class]="getInputClasses(item.get('quantity'))"
+            />
+            <div *ngIf="item.get('quantity')?.invalid && item.get('quantity')?.touched" class="mt-1 text-sm text-red-600">
+              <div *ngIf="item.get('quantity')?.errors?.['required']">Quantity is required</div>
+              <div *ngIf="item.get('quantity')?.errors?.['min']">Quantity must be at least 1</div>
+            </div>
+          </div>
+
+          <!-- Item Total -->
+          <div class="flex items-end">
+            <div class="w-full">
+              <label class="block text-sm font-medium text-gray-700">Total</label>
+              <div class="mt-1 p-2 bg-gray-50 rounded-md text-sm font-medium text-gray-900">
+                {{ formatPrice(getItemTotal(item.get('productId')?.value, item.get('quantity')?.value), getProductCurrency(item.get('productId')?.value)) }}
+              </div>
+            </div>
+            <button
+              type="button"
+              (click)="removeOrderItem(i)"
+              class="ml-2 p-2 text-red-600 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded-md"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Items State -->
+    <div *ngIf="itemsArray.length === 0" class="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900">No items added</h3>
+      <p class="mt-1 text-sm text-gray-500">Add products to create an order.</p>
+    </div>
+  </div>
+
+  <!-- Order Total -->
+  <div *ngIf="itemsArray.length > 0" class="bg-gray-50 p-4 rounded-lg">
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-medium text-gray-900">Order Total:</span>
+      <span class="text-lg font-bold text-gray-900">
+        {{ formatPrice(getOrderTotal(), 'USD') }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Additional Information -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div>
+      <label for="shippingAddress" class="block text-sm font-medium text-gray-700">
+        Shipping Address
+      </label>
+      <textarea
+        id="shippingAddress"
+        formControlName="shippingAddress"
+        rows="3"
+        [class]="getInputClasses(orderForm.get('shippingAddress'))"
+        placeholder="Enter shipping address..."
+      ></textarea>
+    </div>
+
+    <div>
+      <label for="notes" class="block text-sm font-medium text-gray-700">
+        Notes
+      </label>
+      <textarea
+        id="notes"
+        formControlName="notes"
+        rows="3"
+        [class]="getInputClasses(orderForm.get('notes'))"
+        placeholder="Enter any additional notes..."
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Form Actions -->
+  <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+    <button
+      type="button"
+      (click)="onCancel()"
+      class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      [disabled]="loading || orderForm.invalid || itemsArray.length === 0"
+      class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      <svg *ngIf="loading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      {{ loading ? 'Saving...' : 'Save Order' }}
+    </button>
+  </div>
+</form>

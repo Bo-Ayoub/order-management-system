@@ -1,0 +1,321 @@
+// Custom styles for order list component
+// Most styling is handled by Tailwind classes in the template
+
+.order-list {
+  @apply bg-white shadow-sm rounded-lg;
+  
+  .order-header {
+    @apply px-6 py-4 border-b border-gray-200;
+    
+    .header-content {
+      @apply flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4;
+      
+      .filters-section {
+        @apply flex flex-col sm:flex-row gap-4 flex-1;
+        
+        .search-bar {
+          @apply flex-1 max-w-md;
+          
+          .search-input {
+            @apply block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+          }
+          
+          .search-icon {
+            @apply absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none;
+            
+            svg {
+              @apply h-5 w-5 text-gray-400;
+            }
+          }
+        }
+        
+        .status-filter {
+          @apply min-w-48;
+          
+          select {
+            @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+          }
+        }
+        
+        .customer-filter {
+          @apply min-w-48;
+          
+          input {
+            @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+          }
+        }
+      }
+      
+      .action-buttons {
+        @apply flex items-center gap-2;
+        
+        .btn {
+          @apply inline-flex items-center px-3 py-2 border text-sm leading-4 font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2;
+          
+          &.btn-secondary {
+            @apply border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+          }
+          
+          &.btn-primary {
+            @apply px-4 py-2 border-transparent shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+          }
+          
+          &.btn-outline {
+            @apply px-4 py-2 border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-blue-500;
+          }
+          
+          svg {
+            @apply h-4 w-4 mr-2;
+          }
+        }
+      }
+    }
+  }
+  
+  .loading-state {
+    @apply flex justify-center items-center py-12;
+    
+    .spinner {
+      @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
+    }
+  }
+  
+  .orders-table {
+    @apply overflow-hidden;
+    
+    .table-container {
+      @apply overflow-x-auto;
+      
+      table {
+        @apply min-w-full divide-y divide-gray-200;
+        
+        thead {
+          @apply bg-gray-50;
+          
+          tr {
+            th {
+              @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+              
+              &.actions-column {
+                @apply relative px-6 py-3;
+              }
+            }
+          }
+        }
+        
+        tbody {
+          @apply bg-white divide-y divide-gray-200;
+          
+          tr {
+            @apply hover:bg-gray-50;
+            
+            td {
+              @apply px-6 py-4 whitespace-nowrap;
+              
+              .order-number {
+                @apply text-sm font-medium text-gray-900;
+              }
+              
+              .customer-name {
+                @apply text-sm text-gray-900;
+              }
+              
+              .status-badge {
+                @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+                
+                &.pending {
+                  @apply text-yellow-600 bg-yellow-100;
+                }
+                
+                &.confirmed {
+                  @apply text-blue-600 bg-blue-100;
+                }
+                
+                &.processing {
+                  @apply text-purple-600 bg-purple-100;
+                }
+                
+                &.shipped {
+                  @apply text-indigo-600 bg-indigo-100;
+                }
+                
+                &.delivered {
+                  @apply text-green-600 bg-green-100;
+                }
+                
+                &.cancelled {
+                  @apply text-red-600 bg-red-100;
+                }
+              }
+              
+              .item-count {
+                @apply text-sm text-gray-900;
+              }
+              
+              .total-amount {
+                @apply text-sm font-medium text-gray-900;
+              }
+              
+              .order-date {
+                @apply text-sm text-gray-500;
+              }
+              
+              .actions {
+                @apply text-right text-sm font-medium;
+                
+                .action-links {
+                  @apply flex items-center justify-end space-x-2;
+                  
+                  a {
+                    @apply text-blue-600 hover:text-blue-900;
+                    
+                    &.edit-link {
+                      @apply text-indigo-600 hover:text-indigo-900;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .empty-state {
+    @apply text-center py-12;
+    
+    .empty-icon {
+      @apply mx-auto h-12 w-12 text-gray-400;
+    }
+    
+    .empty-title {
+      @apply mt-2 text-sm font-medium text-gray-900;
+    }
+    
+    .empty-description {
+      @apply mt-1 text-sm text-gray-500;
+    }
+    
+    .empty-action {
+      @apply mt-6;
+      
+      .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+        
+        svg {
+          @apply h-4 w-4 mr-2;
+        }
+      }
+    }
+  }
+  
+  .pagination {
+    @apply bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6;
+    
+    .mobile-pagination {
+      @apply flex-1 flex justify-between sm:hidden;
+      
+      .btn {
+        @apply relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed;
+        
+        &.next-btn {
+          @apply ml-3;
+        }
+      }
+    }
+    
+    .desktop-pagination {
+      @apply hidden sm:flex-1 sm:flex sm:items-center sm:justify-between;
+      
+      .pagination-info {
+        p {
+          @apply text-sm text-gray-700;
+          
+          .font-medium {
+            font-weight: 500;
+          }
+        }
+      }
+      
+      .pagination-nav {
+        @apply relative z-0 inline-flex rounded-md shadow-sm -space-x-px;
+        
+        .btn {
+          @apply relative inline-flex items-center px-2 py-2 border text-sm font-medium;
+          
+          &.prev-btn {
+            @apply rounded-l-md border-gray-300 bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed;
+          }
+          
+          &.next-btn {
+            @apply rounded-r-md border-gray-300 bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed;
+          }
+          
+          &.page-btn {
+            @apply border text-sm font-medium;
+            
+            &.active {
+              @apply z-10 bg-blue-50 border-blue-500 text-blue-600 px-4 py-2;
+            }
+            
+            &.inactive {
+              @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-50 px-4 py-2;
+            }
+          }
+          
+          svg {
+            @apply h-5 w-5;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .order-list {
+    .order-header {
+      .header-content {
+        .filters-section {
+          @apply flex-col;
+          
+          .search-bar {
+            @apply max-w-none;
+          }
+        }
+        
+        .action-buttons {
+          @apply flex-col w-full;
+          
+          .btn {
+            @apply w-full justify-center;
+          }
+        }
+      }
+    }
+    
+    .orders-table {
+      .table-container {
+        table {
+          thead {
+            tr {
+              th {
+                @apply px-3 py-2 text-xs;
+              }
+            }
+          }
+          
+          tbody {
+            tr {
+              td {
+                @apply px-3 py-2 text-xs;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

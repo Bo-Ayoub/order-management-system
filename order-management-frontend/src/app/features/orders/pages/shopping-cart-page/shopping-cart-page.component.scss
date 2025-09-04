@@ -1,0 +1,47 @@
+// Custom styles for shopping cart page
+// Most styling is handled by Tailwind classes in the template
+
+.shopping-cart-page {
+  @apply min-h-screen bg-gray-50;
+  
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .page-header {
+    @apply mb-8;
+    
+    h1 {
+      @apply text-3xl font-bold text-gray-900;
+    }
+    
+    p {
+      @apply mt-2 text-sm text-gray-600;
+    }
+  }
+  
+  .cart-container {
+    @apply max-w-4xl mx-auto;
+  }
+  
+  .continue-shopping {
+    @apply mt-8 text-center;
+    
+    .btn {
+      @apply inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+      
+      svg {
+        @apply h-4 w-4 mr-2;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .shopping-cart-page {
+    .page-container {
+      @apply px-2 py-4;
+    }
+  }
+}

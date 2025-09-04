@@ -1,0 +1,69 @@
+// Custom styles for customer list component
+// Most styling is handled by Tailwind classes in the template
+
+.customer-avatar {
+  @apply flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center;
+  
+  span {
+    @apply text-sm font-medium text-blue-600;
+  }
+}
+
+.action-buttons {
+  @apply flex items-center justify-end space-x-2;
+  
+  a, button {
+    @apply text-sm font-medium transition-colors duration-200;
+  }
+  
+  .view-link {
+    @apply text-blue-600 hover:text-blue-900;
+  }
+  
+  .edit-link {
+    @apply text-indigo-600 hover:text-indigo-900;
+  }
+  
+  .delete-button {
+    @apply text-red-600 hover:text-red-900;
+  }
+}
+
+// Loading spinner animation
+.loading-spinner {
+  @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
+}
+
+// Pagination styles
+.pagination-button {
+  @apply relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-colors duration-200;
+  
+  &.active {
+    @apply z-10 bg-blue-50 border-blue-500 text-blue-600;
+  }
+  
+  &.inactive {
+    @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-50;
+  }
+  
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+// Empty state
+.empty-state {
+  @apply text-center py-12;
+  
+  svg {
+    @apply mx-auto h-12 w-12 text-gray-400;
+  }
+  
+  h3 {
+    @apply mt-2 text-sm font-medium text-gray-900;
+  }
+  
+  p {
+    @apply mt-1 text-sm text-gray-500;
+  }
+}

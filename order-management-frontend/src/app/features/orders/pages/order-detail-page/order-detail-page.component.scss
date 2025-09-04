@@ -1,0 +1,35 @@
+// Custom styles for order detail page
+// Most styling is handled by Tailwind classes in the template
+
+.order-detail-page {
+  @apply min-h-screen bg-gray-50;
+  
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .page-header {
+    @apply mb-8;
+    
+    h1 {
+      @apply text-3xl font-bold text-gray-900;
+    }
+    
+    p {
+      @apply mt-2 text-sm text-gray-600;
+    }
+  }
+  
+  .detail-container {
+    @apply max-w-6xl mx-auto;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .order-detail-page {
+    .page-container {
+      @apply px-2 py-4;
+    }
+  }
+}

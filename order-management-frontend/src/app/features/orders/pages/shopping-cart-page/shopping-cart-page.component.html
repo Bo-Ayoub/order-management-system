@@ -1,0 +1,34 @@
+<div class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Shopping Cart</h1>
+      <p class="mt-2 text-sm text-gray-600">Review your items before checkout</p>
+    </div>
+
+    <!-- Shopping Cart Component -->
+    <div class="max-w-4xl mx-auto">
+      <app-shopping-cart
+        [showHeader]="false"
+        [showCheckoutButton]="true"
+        [compact]="false"
+        (checkout)="onCheckout()"
+        (itemUpdated)="onItemUpdated()"
+        (itemRemoved)="onItemRemoved()"
+      ></app-shopping-cart>
+    </div>
+
+    <!-- Continue Shopping -->
+    <div class="mt-8 text-center">
+      <a
+        routerLink="/products"
+        class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      >
+        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Continue Shopping
+      </a>
+    </div>
+  </div>
+</div>
