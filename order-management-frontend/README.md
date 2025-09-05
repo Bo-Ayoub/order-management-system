@@ -191,7 +191,7 @@ The frontend integrates with a backend API that requires CORS configuration for 
 
 ## 📄 License
 
-This project is part of the Hahn Order Management System.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
